@@ -1,0 +1,163 @@
+html, body {
+    font-family: 'Roboto Mono';
+    margin: 0;
+    padding: 0;
+
+}
+/*
+INICIO DE ESTILOS EN NAV
+*/
+nav {
+    color: #d0d0d0;
+    position: absolute;
+    width: 100%;
+    height: 6rem;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: space-between;
+    z-index: 11;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    margin-left: 3vw;
+    width: 120px;
+    min-width: 100px;
+}
+
+.img-logo {
+    width: 100%;
+}
+
+.img-logo:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.nav-options-container {
+    margin-right: 3vw;
+}
+
+.barra-nav {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+}
+
+.barra-nav li{
+    height: 100%;
+    width: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-section a{
+    color: #d0d0d0;
+    text-decoration: none;
+}
+
+.nav-section:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.nav-section:hover a{
+    color: white;
+}
+
+.language {
+    font-size: 14px;
+}
+
+.spanish, .english {
+    color: #d0d0d0;
+    text-decoration: none;
+}
+
+.spanish {
+    margin-right: 5px;
+}
+
+.spanish img, .english img {
+    position: relative;
+    top: 3px;
+}
+/*
+FIN DE ESTILOS EN NAV
+*/
+/*
+INICIO DE ESTILOS EN EL CARRUSEL
+*/
+.carrusel-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carrusel-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.carrusel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/*
+FIN DE ESTILOS EN EL CARRUSEL
+*/
+/*
+INICIO DE ESTILOS EN LAS FRASES DEL CARRUSEL
+*/
+.phrases-carrusel-container {
+    background-color: rgba(0, 0, 0, .6);
+    color: #d0d0d0;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 45%;
+    z-index: 11;
+}
+
+.phrases-carrusel-slide {
+    width: 100%;
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.phrases-carrusel-slide div {
+    display: flex;
+    font-weight: bold;
+    font-size: 2vw;
+    min-width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.phrases-carrusel-slide div p {
+    justify-items: center;
+    width: 50%;
+    margin: 0;
+}
+
+.phrases-carrusel-slide div p::after {
+    content: '';
+    width: 70%;
+    border-bottom: .3vw solid #d0d0d0;
+    display: flex;
+    position: relative;
+    bottom: 46%;
+}
+/*
+FIN DE ESTILOS EN LAS FRASES DEL CARRUSEL
+*/

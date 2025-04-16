@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/img/logoPestaña.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>EloyCon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <a href="{{ url_for('main.home') }}">
+                <img src="../static/img/logo.png" alt="logo" class="img-logo">
+            </a>
+        </div>
+        <div class="nav-options-container">
+            <ul class="barra-nav">
+                <li class="nav-section"><a href="{{ url_for('main.home') }}">{{ translate['nav_home'] }}</a></li>
+                <li class="nav-section"><a href="{{ url_for('main.proyectos') }}">{{ translate['nav_proyectos'] }}</a></li>
+                <li class="nav-section"><a href="{{ url_for('main.nosotros') }}">{{ translate['nav_nosotros'] }}</a></li>
+                <li class="nav-section"><a href="{{ url_for('main.servicios') }}">{{ translate['nav_servicios'] }}</a></li>
+                <li class="nav-section"><a href="{{ url_for('main.contacto') }}">{{ translate['nav_contacto'] }}</a></li>
+                <li class="nav-section">{{ translate['nav_acceso'] }}</li>
+                <li class="language">
+                    <a href="{{ request.path }}?lang=es" class="spanish"><span>ES</span><img src="{{ url_for('static', filename='img/icon-language/Spain.svg') }}" alt="Spain flag" width="17px"></a>
+                    <a href="{{ request.path }}?lang=en" class="english"><span>EN</span><img src="{{ url_for('static', filename='img/icon-language/United-Kingdom.svg') }}" alt="United Kingdom flag" width="17px"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="carrusel-container">
+        <div class="phrases-carrusel-container">
+            <div class="phrases-carrusel-slide" id="phrases-carrusel">
+                {% for phrase in phrases_carrusel %}
+                <div>
+                    <p>{{ phrases_carrusel[phrase] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="carrusel-slide" id="carrusel">
+            {% for img_photo in img %}
+            <img src="{{ url_for('static', filename='img/carrusel/' + img_photo) }}" alt="imagen casas">
+            {% endfor %}
+            <img src="{{ url_for('static', filename='img/carrusel/1.webp') }}" alt="imagen casas">
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
+</body>
+</html>
