@@ -7,8 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/57ce1ec34c.js" crossorigin="anonymous"></script>
     <title>EloyCon</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    {% block style %}{% endblock %}
 </head>
 <body>
     <nav>
@@ -33,24 +36,9 @@
         </div>
     </nav>
 
-    <div class="carrusel-container">
-        <div class="phrases-carrusel-container">
-            <div class="phrases-carrusel-slide" id="phrases-carrusel">
-                {% for phrase in phrases_carrusel %}
-                <div>
-                    <p>{{ phrases_carrusel[phrase] }}</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="carrusel-slide" id="carrusel">
-            {% for img_photo in img %}
-            <img src="{{ url_for('static', filename='img/carrusel/' + img_photo) }}" alt="imagen casas">
-            {% endfor %}
-            <img src="{{ url_for('static', filename='img/carrusel/1.webp') }}" alt="imagen casas">
-        </div>
-    </div>
+    {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
     <script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
+    {% block scripts %}{% endblock %}
 </body>
-</html>
+</html>  

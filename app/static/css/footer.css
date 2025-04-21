@@ -1,0 +1,79 @@
+/*
+START STYLE FOOTER CONTACT
+*/
+footer {
+    width: 100%;
+}
+
+.footer-container {
+    background-color: #777777;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-1, .footer-2, .footer-3 {
+    width: 300px;
+    height: fit-content;
+}
+
+.footer-1 {
+    text-align: center;
+}
+
+.footer-1 h2 {
+    font-size: 1.2rem;
+}
+
+.footer-1 p, .footer-1 p i {
+    font-size: .8rem;
+}
+
+.footer-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    padding-top: 10px;
+    width: 40%;
+}
+
+.footer-icon {
+    width: 90%;
+    filter: brightness(0);
+}
+
+.footer-3 {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: .9rem;
+}
+
+.fa-whatsapp {
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #d0d0d0;
+    color: #25d366;
+    font-size: 3rem;
+    border-radius: 50%;
+}
+/*
+END STYLE FOOTER CONTACT
+*/
+/*
+START STYLE FOOTER POLICIES
+*/
+.footer-policies {
+    padding: 3px 0;
+    background-color: #404040;
+    font-size: .8rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+/*
+END STYLE FOOTER POLICIES
+*/

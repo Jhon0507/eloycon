@@ -1,0 +1,26 @@
+<footer>
+    <div class="footer-container">
+        <div class="footer-1">
+            <h2>{{ footer['footer1_1_titulo'] }}</h2>
+            <p><i class="fa-solid fa-location-dot"></i> {{ footer['footer1_1_c1'] }}</p>
+            <p><i class="fa-solid fa-map-location"></i> {{ footer['footer1_1_c2'] }}</p>
+            <p><i class="fa-solid fa-envelope"></i> {{ footer['footer1_1_c3'] }}</p>
+            <p><i class="fa-solid fa-phone"></i> {{ footer['footer1_1_c4'] }}</p>
+        </div>
+        <div class="footer-2">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" class="footer-logo">
+            <img src="{{ url_for('static', filename='img/icon-house.webp') }}" alt="logo" class="footer-icon">
+        </div>
+        <div class="footer-3">
+            <div>
+                {{ footer['footer1_3_d'] }}
+            </div>
+            <div>
+                <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-policies">
+        {{ footer['footer2'] }}
+    </div>
+</footer>

@@ -30,24 +30,51 @@ def inherit_global_variables():
 @main.route('/')
 @main.route('/home')
 def home():
-    return render_template('home.html')
+    # get general title and description
+    text_q = get_title_description_our_qualities(request.args.get('lang', 'es'))
+    # get icons, title and description for the 3 containers
+    text_qualities = get_phrases_our_qualities(request.args.get('lang', 'es'))
+
+    # get general title and description
+    text_process = get_title_description_our_process(request.args.get('lang', 'es'))
+    # get images, title and description for the 3 containers
+    content_process = get_content_our_process(request.args.get('lang', 'es'))
+    # get title from last projects
+    title = get_title_last_projects(request.args.get('lang', 'es'))
+    # get phrases from footer
+    footer = get_values_footer(request.args.get('lang', 'es'))
+    # get images form last projects (review)
+    img_last_projects_c = ['construction/project-1/hallway-houseB.webp', 'construction/project-2/movie-theaterB.webp',
+                           'construction/project-3/barbecue-areaB.webp', 'construction/project-4/poolB.webp',
+                           'construction/project-5/kitchenB.webp', 'construction/project-6/stairsB.webp']
+    img_last_projects_r = ['reform/project-1/bathroomB.webp', 'reform/project-2/barbecue-areaB.webp', 'reform/project-3/dining-roomB.webp',
+                           'reform/project-4/roomB.webp', 'reform/project-5/stairsB.webp']
+    return render_template('home.html',
+                           text_q=text_q,
+                           text_qualities=text_qualities,
+                           text_process=text_process,
+                           content_process=content_process,
+                           title=title,
+                           footer=footer,
+                           img_last_projects_c=img_last_projects_c,
+                           img_last_projects_r=img_last_projects_r)
 
 @main.route('/projects')
 @main.route('/proyectos')
 def proyectos():
-    return 'seccion de proyectos'
+    return render_template('proyectos.html')
 
 @main.route('/us')
 @main.route('/nosotros')
 def nosotros():
-    return 'seccion de nosotros'
+    return render_template('nosotros.html')
 
 @main.route('/services')
 @main.route('/servicios')
 def servicios():
-    return 'seccion de servicios'
+    return render_template('servicios.html')
 
 @main.route('/contact')
 @main.route('/contacto')
 def contacto():
-    return 'seccion de contactos'
+    return render_template('contacto.html')

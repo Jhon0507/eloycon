@@ -1,1 +1,61 @@
 {% extends "base.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+{% endblock %}
+{% block content %}
+    {% include "carrusel.html" %}
+    <main>
+        <div class="home-container">
+            <h2 class="title">{{ text_q['home_cualidades_titulo'] }}</h2>
+            <p class="content">{{ text_q['home_cualidades_texto'] }}</p>
+            <div class="qualities-container">
+                {% for content in text_qualities %}
+                <div class="quality quality-{{text_qualities[content]['svg'].split('.')[0]}}" >
+                    <img src="{{ url_for('static', filename='img/img-to-web/home/icon-quality/' + text_qualities[content]['svg']) }}" alt="{{ text_qualities[content]['svg'].split('.')[0] }}" class="icon-quality">
+                    <div class="quality-text">
+                        <h3>{{ text_qualities[content]['title'] }}</h3>
+                        <p>{{ text_qualities[content]['description'] }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>  
+        <div class="home-container">
+            <h2 class="title">{{ text_process['home_proceso_titulo'] }}</h2>
+            <p class="content">{{ text_process['home_proceso_descripcion'] }}</p>
+            <div class="process-container">
+                {% for content in content_process | reverse %}
+                <div class="process process-{{content_process[content]['img'].split('.')[0]}}">
+                    <img src="{{ url_for('static', filename='img/img-to-web/home/img-process/' + content_process[content]['img']) }}" alt="imagen-{{content_process[content]['img'].split('.'[0])}}" class="img-process">
+                    <h3>{{ content_process[content]['title'] }}</h3>
+                    <div class="process-text">
+                        <p>{{ content_process[content]['description'] }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>   
+        <div class="last-projects-container">
+            <h2 class="title-last-projects">{{ title }}</h2>
+            <div class="last-projects">
+                {% for construction in img_last_projects_c %}
+                <a href="">
+                    <img src="{{ url_for('static', filename='img/home-projects/' + construction) }}" alt="{{construction.split('.')[0]}}">
+                </a>
+                {% endfor %}
+                {% for reform in img_last_projects_r %}
+                <a href="">
+                    <img src="{{ url_for('static', filename='img/home-projects/' + reform) }}" alt="{{reform.split('.')[0]}}">
+                </a>
+                {% endfor %}   
+            </div>
+            <button class="prev"><i class="fa-solid fa-caret-left"></i></button>
+            <button class="next"><i class="fa-solid fa-caret-right"></i></button>
+        </div>  
+    </main>
+    {% include "footer.html" %}
+    {% block scripts %}
+        <script src="{{ url_for('static', filename='js/last_projects.js') }}"></script>
+    {% endblock %}
+{% endblock %}

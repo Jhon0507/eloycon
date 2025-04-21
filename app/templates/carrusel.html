@@ -1,0 +1,17 @@
+<div class="carrusel-container">
+    <div class="phrases-carrusel-container">
+        <div class="phrases-carrusel-slide" id="phrases-carrusel">
+            {% for phrase in phrases_carrusel %}
+            <div>
+                <p>{{ phrases_carrusel[phrase] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="carrusel-slide" id="carrusel">
+        {% for img_photo in img %}
+        <img src="{{ url_for('static', filename='img/carrusel/' + img_photo) }}" alt="imagen casas">
+        {% endfor %}
+        <img src="{{ url_for('static', filename='img/carrusel/1.webp') }}" alt="imagen casas">
+    </div>
+</div>
