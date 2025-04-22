@@ -1,5 +1,43 @@
 {% extends "base.html" %}
-
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/proyectos.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+{% endblock %}
 {% block content %}
-    <h1>Home</h1>
+    {% include "carrusel.html" %}
+    <main>
+        <div class="project-container">
+            <h2>{{ content['proyecto_titulo'] }}</h2>
+            <p>{{ content['proyecto_descripcion'] }}</p>
+        </div>
+        <div class="project-section-container">
+            <h3>{{ interiors['proyecto_interiores'] }}</h3>
+            <div class="project-imgs-container">
+                <!--  start for de second values of the dictionary-->
+                {% set values = interiors.items() | list %}
+                {% for key, value in values[1:] %}
+                <div>
+                    <img src="{{ url_for('static', filename='img/img-to-web/projects/interior/' + value['img']) }}" alt="{{value['img']}}" class="img-container">
+                    <a href="" class="link-option">{{ value['texto'] }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="project-section-container">
+            <h3>{{ exteriors['proyecto_exteriores'] }}</h3>
+            <div class="project-imgs-container">
+                {% set values = exteriors.items() | list %}
+                {% for key, value in values[1:] %}
+                <div>
+                    <img src="{{ url_for('static', filename='img/img-to-web/projects/exterior/' + value['img']) }}" alt="{{value['img']}}" class="img-container">
+                    <a href="" class="link-option">{{ value['texto'] }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    {% include "footer.html" %}
+    {% block scripts %}
+        
+    {% endblock %}
 {% endblock %}

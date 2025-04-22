@@ -16,7 +16,7 @@ INSERT INTO traducciones(clave, es, en) VALUES
 ('frase_carrusel7', 'Diseñamos y construimos espacios que reflejan tu estilo y comodidad', 'We design and build spaces that reflect your style and comfort'),
 ('frase_carrusel8', 'Construimos más que casas, creamos hogares llenos de felicidad', 'We build more than houses, we create homes full of happiness');
 
-
+-- HOME SECTION
 INSERT INTO traducciones(clave, es, en) VALUES
 ('home_cualidades_titulo', 'Nuestras cualidades', 'Our qualities'),
 ('home_cualidades_texto', 
@@ -43,8 +43,6 @@ INSERT INTO traducciones(clave, es, en) VALUES
 'Nuestro equipo sigue un proceso de planificación preciso para la construcción de hogares, consiste en una serie de 3 pasos',
 'Our team follows a precise planning process for building homes, consisting of a series of 3 steps');
 
-
-
 INSERT INTO traducciones(clave, es, en) VALUES
 ('home_proceso_t1', 'Reuniones y servicios', 'Meetings and services'),
 ('home_proceso_t2', 'Diseño y construcción', 'Design and construction'),
@@ -62,6 +60,34 @@ INSERT INTO traducciones(clave, es, en) VALUES
 INSERT INTO traducciones(clave, es, en) VALUES
 ('home_ultimos_proyectos_titulo', 'Últimos proyectos', 'Last projects');
 
+-- PROJECT SECTION
+INSERT INTO traducciones(clave, es, en) VALUES
+('proyecto_titulo', 'Sección de nuestros proyectos', 'Our section projects'),
+('proyecto_descripcion', 
+'Disponemos de un buen historial  de proyectos que hemos realizado a lo largo de los años, nos encargamos de piscinas, cocinas, dormitorios, garajes...',
+"We have a good track record of projects over the years. We've worked on swimming pools, kitchens, bedrooms, garages, and more"),
+('proyecto_interiores', 'Interiores', 'Interiors'),
+('proyecto_interiores_1', 'Salas de estar', 'living rooms'),
+('proyecto_interiores_2', 'Cocinas', 'Kitchens'),
+('proyecto_interiores_3', 'Dormitorios', 'Bedrooms'),
+('proyecto_interiores_4', 'Baños', 'Bathrooms'),
+('proyecto_interiores_5', 'Escaleras', 'Stairs'),
+('proyecto_interiores_6', 'Despachos', 'Offices'),
+('proyecto_interiores_7', 'Gimnasios', 'Gyms'),
+('proyecto_interiores_8', 'Salas de cine', 'Home theaters'),
+('proyecto_interiores_9', 'Zonas de lavado', 'Laundry room'),
+('proyecto_exteriores', 'Exteriores', 'Exteriors'),
+('proyecto_exteriores_1', 'Fachadas', 'Facades'),
+('proyecto_exteriores_2', 'Terrazas', 'Terraces'),
+('proyecto_exteriores_3', 'Piscinas', 'Pools'),
+('proyecto_exteriores_4', 'Garajes', 'Garages'),
+('proyecto_exteriores_5', 'Cercas', 'Fences'),
+('proyecto_exteriores_6', 'Patios', 'Patios'),
+('proyecto_exteriores_7', 'Zona barbacoas', 'BBQ area'), 
+('proyecto_exteriores_8', 'Estanques', 'Ponds'),
+('proyecto_exteriores_9', 'Patio de niños', 'Playground');
+
+-- FOOTER
 INSERT INTO traducciones(clave, es, en) VALUES
 ('footer1_1_titulo', 'Información de contacto', 'Contact information'),
 ('footer1_1_c1', 'Calle Montenegro, num 43, piso 12', 'Montenegro Street, number 43, 12th floor'),

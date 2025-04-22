@@ -62,19 +62,41 @@ def home():
 @main.route('/projects')
 @main.route('/proyectos')
 def proyectos():
-    return render_template('proyectos.html')
+    # get title and description
+    content = get_title_description_projects(request.args.get('lang', 'es'))
+    # get img and content for interior section
+    interiors = get_content_interior(request.args.get('lang', 'es'))
+    # get img and content for exterior section
+    exteriors = get_content_exterior(request.args.get('lang', 'es'))
+    # load values footer
+    footer = get_values_footer(request.args.get('lang', 'es'))
+    return render_template('proyectos.html',
+                           content=content,
+                           interiors=interiors,
+                           exteriors=exteriors,
+                           footer=footer
+                           )
 
 @main.route('/us')
 @main.route('/nosotros')
 def nosotros():
-    return render_template('nosotros.html')
+    # load values footer
+    footer = get_values_footer(request.args.get('lang', 'es'))
+    return render_template('nosotros.html',
+                           footer=footer)
 
 @main.route('/services')
 @main.route('/servicios')
 def servicios():
-    return render_template('servicios.html')
+    # load values footer
+    footer = get_values_footer(request.args.get('lang', 'es'))
+    return render_template('servicios.html',
+                           footer=footer)
 
 @main.route('/contact')
 @main.route('/contacto')
 def contacto():
-    return render_template('contacto.html')
+    # load values footer
+    footer = get_values_footer(request.args.get('lang', 'es'))
+    return render_template('contacto.html',
+                           footer=footer)

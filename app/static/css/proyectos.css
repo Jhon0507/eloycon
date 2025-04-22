@@ -1,0 +1,87 @@
+/*
+START STYLE TITLE AND DESCRIPTION
+*/
+.project-container {
+    margin-top: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.project-container h2::after {
+    content: '';
+    width: 80%;
+    height: 3px;
+    background-color: #d0d0d0;
+    display: block;
+    margin: 0 auto 2rem auto;
+}
+
+.project-container p {
+    width: 40%;
+    text-align: center;
+}
+/*
+END STYLE TITLE AND DESCRIPTION
+*/
+/*
+START STYLE INTERIORS
+*/
+.project-section-container h3 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.project-imgs-container {
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0;
+    justify-self: center;
+    margin-bottom: 5%;
+}
+
+.project-imgs-container div {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.img-container {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.link-option {
+    font-weight: bold;
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #d0d0d0;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 2vw;
+}
+
+.project-imgs-container div:hover .link-option {
+    display: flex;
+}
+/*
+END STYLE INTERIORS
+*/

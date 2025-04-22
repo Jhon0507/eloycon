@@ -1,5 +1,15 @@
 {% extends "base.html" %}
-
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicios.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+{% endblock %}
 {% block content %}
-    <h1>Home</h1>
+    {% include "carrusel.html" %}
+    <main>
+        <h1>Servicios</h1> 
+    </main>
+    {% include "footer.html" %}
+    {% block scripts %}
+        
+    {% endblock %}
 {% endblock %}

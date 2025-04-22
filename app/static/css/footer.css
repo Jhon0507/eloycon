@@ -11,7 +11,7 @@ footer {
     justify-content: space-around;
 }
 
-.footer-1, .footer-2, .footer-3 {
+.footer-1, .footer-3 {
     width: 300px;
     height: fit-content;
 }
@@ -29,9 +29,11 @@ footer {
 }
 
 .footer-2 {
+    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .footer-logo {

@@ -105,6 +105,48 @@ def get_title_last_projects(language):
     cursor.execute(f'SELECT {language} FROM traducciones WHERE clave = "home_ultimos_proyectos_titulo"')
     return cursor.fetchall()[0][0]
 
+# GET QUERIES TO PROYECTOS.HTML
+def get_title_description_projects(language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave in ("proyecto_titulo", "proyecto_descripcion")')
+    content = cursor.fetchall()
+
+    return {i['clave']:i['texto'] for i in content}
+
+def get_content_interior(language):
+    verify_language(language)
+    path = 'app\\static\\img\\img-to-web\\projects\\interior'
+    img = os.listdir(path)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "proyecto_interior%"')
+    text = cursor.fetchall()
+    # before add the title of the section
+    content = {text[0]['clave']:text[0]['texto']}
+
+    for i, t in zip(img, text[1:]):
+        content[t['clave']] = {'img': i, 'texto': t['texto']}
+
+    return content
+
+def get_content_exterior(language):
+    verify_language(language)
+    path = 'app\\static\\img\\img-to-web\\projects\\exterior'
+    img = os.listdir(path)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "proyecto_exterior%"')
+    text = cursor.fetchall()
+    # before add the title of the section
+    content = {text[0]['clave']:text[0]['texto']}
+
+    for i, t in zip(img, text[1:]):
+        content[t['clave']] = {'img': i, 'texto': t['texto']}
+
+    return content
+
 # QUERY FOR FOOTER
 def get_values_footer(language):
     verify_language(language)
