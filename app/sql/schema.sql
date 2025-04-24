@@ -45,7 +45,7 @@ CREATE TABLE imagenes_proyectos(
 
 CREATE TABLE traducciones(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    clave VARCHAR(50) NOT NULL,
+    clave VARCHAR(50) NOT NULL UNIQUE,
     es VARCHAR(1500) NOT NULL,
     en VARCHAR(1500) NOT NULL,
     id_proyecto INT,
@@ -78,7 +78,7 @@ CREATE TABLE proyecto_empleados(
     id_empleados INT NOT NULL,
     tipo_servicio ENUM('construccion', 'reforma'),
 
-    PRIMARY KEY (id_proyecto, id_equipo),
+    PRIMARY KEY (id_proyecto, id_empleados),
     FOREIGN KEY (id_proyecto) REFERENCES proyectos(id)
         ON UPDATE CASCADE
         ON DELETE CASCADE,

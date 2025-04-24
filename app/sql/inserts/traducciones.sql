@@ -4,9 +4,7 @@ INSERT INTO traducciones(clave, es, en) VALUES
 ('nav_nosotros', 'Nosotros', 'Us'),
 ('nav_servicios', 'Servicios', 'Services'),
 ('nav_contacto', 'Contacto', 'Contact'),
-('nav_acceso', 'Acceso', 'Access');
-
-INSERT INTO traducciones(clave, es, en) VALUES
+('nav_acceso', 'Acceso', 'Access'),
 ('frase_carrusel1', 'Transformamos tu hogar en el espacio de tus sueños', 'We transform your home into the space of your dreams'),
 ('frase_carrusel2', 'Construcción de calidad para un hogar lleno de momentos especiales', 'Quality construction for a home full of special moments'),
 ('frase_carrusel3', 'Hemos construido más de 100 casas con un éxito del 100%', 'We have built more than 100 houses with a 100% success rate'),
@@ -21,9 +19,7 @@ INSERT INTO traducciones(clave, es, en) VALUES
 ('home_cualidades_titulo', 'Nuestras cualidades', 'Our qualities'),
 ('home_cualidades_texto', 
 'Disponemos de diseñadores, arquitectos y ingenieros con experiencia en el sector la construcción de casas y un gran equipo de obreros comprometidos ante cualquier proyecto',
-'We have designers, architects and engineers with experience in the home construction sector and a great team of workers committed to any project');
-
-INSERT INTO traducciones(clave, es, en) VALUES
+'We have designers, architects and engineers with experience in the home construction sector and a great team of workers committed to any project'),
 ('home_cualidades_t1', 'Especialidades', 'Specialties'),
 ('home_cualidades_t2', 'Comunicación', 'Communication'),
 ('home_cualidades_t3', 'Personalización', 'Personalization'),
@@ -35,15 +31,11 @@ INSERT INTO traducciones(clave, es, en) VALUES
 'We have constant communication with our customers, either through our customer service team or through personal meetings with our engineers to receive feedback from our customers'),
 ('home_cualidades_d3',
 'Damos la oportunidad a nuestros clientes de dar forma a sus ideas teniendo en cuenta todos los requisitos y convertirlo en realidad además, también podemos ayudar con el asesoramiento de selección de terrenos para elegir la mejor opción',
-'We give our clients the opportunity to shape their ideas taking into account all the requirements and turn it into reality. In addition, we can also help with land selection advice to choose the best option');
-
-INSERT INTO traducciones(clave, es, en) VALUES
+'We give our clients the opportunity to shape their ideas taking into account all the requirements and turn it into reality. In addition, we can also help with land selection advice to choose the best option'),
 ('home_proceso_titulo', 'Nuestro proceso', 'Our process'),
 ('home_proceso_descripcion', 
 'Nuestro equipo sigue un proceso de planificación preciso para la construcción de hogares, consiste en una serie de 3 pasos',
-'Our team follows a precise planning process for building homes, consisting of a series of 3 steps');
-
-INSERT INTO traducciones(clave, es, en) VALUES
+'Our team follows a precise planning process for building homes, consisting of a series of 3 steps'),
 ('home_proceso_t1', 'Reuniones y servicios', 'Meetings and services'),
 ('home_proceso_t2', 'Diseño y construcción', 'Design and construction'),
 ('home_proceso_t3', 'Dedicación y precisión', 'Dedication and precision'),
@@ -55,9 +47,7 @@ INSERT INTO traducciones(clave, es, en) VALUES
 'Once our management team has completed and gathered all the requirements, we forward it to our team of architects and engineers, where they begin designing the house, selecting the optimal materials for construction, and creating a mockup of the house, which will be presented to the client for final approval'),
 ('home_proceso_d3',
 'Después comenzamos con nuestros ingenieros, aparejadores y obreros quienes comienzan la construcción de la obra a partir de los planos proporcionados por nuestros arquitectos, cada proyectos tiene asignado una serie de obreros que se dedicarán exclusivamente  al proyectos que tienen asignado garantizando que la curva sea continua y sin parones de obra',
-'Then we start with our engineers, surveyors and workers who begin the construction of the work from the plans provided by our architects. Each project has a series of workers assigned who will be dedicated exclusively to the project they have assigned, ensuring that the curve is continuous and without work stops');
-
-INSERT INTO traducciones(clave, es, en) VALUES
+'Then we start with our engineers, surveyors and workers who begin the construction of the work from the plans provided by our architects. Each project has a series of workers assigned who will be dedicated exclusively to the project they have assigned, ensuring that the curve is continuous and without work stops'),
 ('home_ultimos_proyectos_titulo', 'Últimos proyectos', 'Last projects');
 
 -- PROJECT SECTION
@@ -160,7 +150,5 @@ INSERT INTO traducciones(clave, es, en) VALUES
 ('footer1_1_c2', 'Palma, Islas Baleares', 'Palma, Balearic Islands'),
 ('footer1_1_c3', 'info@eloycon.con', 'info@eloycon.con'),
 ('footer1_1_c4', '645 34 65 23', '645 34 65 23'),
-('footer1_3_d', 'Ponte en contacto directamente con nosotros por medio de un WhatsApp para poder conversar sobre tus futuras ideas', 'Contact us directly via WhatsApp so we can discuss your future ideas');
-
-INSERT INTO traducciones(clave, es, en) VALUES
+('footer1_3_d', 'Ponte en contacto directamente con nosotros por medio de un WhatsApp para poder conversar sobre tus futuras ideas', 'Contact us directly via WhatsApp so we can discuss your future ideas'),
 ('footer2', '© EloyCon 2025 · Visite nuestra política de privacidad y política de cookies', '© EloyCon 2025 · Visit our privacy policy and cookie policy');
