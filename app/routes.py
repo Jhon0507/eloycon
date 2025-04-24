@@ -80,9 +80,18 @@ def proyectos():
 @main.route('/us')
 @main.route('/nosotros')
 def nosotros():
+    # get all titles
+    titles_us = get_titles_us(request.args.get('lang', 'es'))
+    # get content section 1
+    content_1 = get_content_us_1(request.args.get('lang', 'es'))
+    # get content section 2
+    content_2 = get_content_us_2(request.args.get('lang', 'es'))
     # load values footer
     footer = get_values_footer(request.args.get('lang', 'es'))
     return render_template('nosotros.html',
+                           titles_us=titles_us,
+                           content_1=content_1,
+                           content_2=content_2,
                            footer=footer)
 
 @main.route('/services')

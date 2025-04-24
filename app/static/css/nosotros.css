@@ -1,0 +1,142 @@
+/*
+START STYLE SECTION WHO WE ARE
+*/
+.who-we-are-container {
+    margin: 5vw 0;
+}
+
+.title-us {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0;
+}
+
+.title-us::after {
+    display: block;
+    content: '';
+    height: 3px;
+    width: 15%;
+    background-color: #d0d0d0;
+    margin: 1rem auto 2rem auto;
+}
+
+.content-1-1 {
+    font-size: 1rem;
+    text-align: center;
+    width: 50%;
+    min-width: 50%;
+    margin: 4rem auto 2rem auto;
+}
+
+.content-1-2 {
+    font-size: .8rem;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto 2rem auto;
+    line-height: 2;
+}
+
+.content-1-3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.content-1-3 img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.gradient-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: linear-gradient(to left, rgba(0,0,0,.1), rgba(0,0,0,.8));   
+}
+
+.content-1-3 p {
+    position: absolute;
+    padding: 25px;
+    width: 40vw;
+    text-align: center;
+    background-color: rgba(0,0,0,.7);
+}
+/*
+END STYLE SECTION WHO WE ARE
+*/
+/*
+START STYLE SECTION OUR HISTORY
+*/
+.our-history-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+}
+
+.content-history-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 2rem auto 1rem auto;
+    width: 100%;
+}
+
+.content-history-container p {
+    width: 300px;
+    text-align: center;
+    margin: 0;
+}
+
+.content-history-container img {
+    width: 300px;
+    object-fit: contain;
+}
+
+.line-history {
+    width: 4px;
+    height: 90%;
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    background-color: #d0d0d0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+}
+
+.line-history span {
+    position: relative;
+    font-weight: bold;
+    padding: 5px 10px;
+    width: fit-content;
+    background-color: #d0d0d0;
+    color: black;
+    border-radius: 15px;
+    left: -25px;
+}
+
+.line-history span:first-child {
+    top: 5%;
+}
+
+.line-history span:nth-child(2) {
+    top: 30%;
+}
+
+.line-history span:nth-child(3) {
+    top: 55%;
+}
+
+.line-history span:last-child {
+    top: 80%;
+}
+/*
+END STYLE SECTION OUR HISTORY
+*/

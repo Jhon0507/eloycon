@@ -6,3 +6,4 @@ __pycache__/
 
 prueba.html
 .vscode
+/app/login/default_users_password.py

@@ -28,6 +28,7 @@ START STYLE OUR QUALITIES
     border: 2px solid #d0d0d0;
     position: relative;
     left: 10%;
+    margin-top: 1rem;
 }
 
 .content {
@@ -148,7 +149,7 @@ START STYLE LAST PROJECTS
     height: 3px;
     background-color: #d0d0d0;
     display: block;
-    margin: 0 auto 2rem auto;
+    margin: 1rem auto 2rem auto;
 }
 
 .last-projects {

@@ -87,6 +87,72 @@ INSERT INTO traducciones(clave, es, en) VALUES
 ('proyecto_exteriores_8', 'Estanques', 'Ponds'),
 ('proyecto_exteriores_9', 'Patio de niños', 'Playground');
 
+-- US SECTION
+INSERT INTO traducciones(clave, es, en) VALUES
+('nosotros_1_titulo', 'Quienes somos', 'Who we are'),
+('nosotros_1_descripcion1', 
+'Somos un equipo de profesionales decididos y dedicados a cumplir nuestros objetivos
+y dar vida a las ideas que se nos proponen junto con nuestro equipo',
+'We are a team of determined professionals dedicated to achieving our goals and 
+bringing to life the ideas proposed to us along with our team'),
+('nosotros_1_descripcion2',
+'En EloyCon, llevamos más de 15 años construyendo sueños. Nos especializamos en el diseño y la construcción de viviendas 
+personalizadas, ofreciendo soluciones integrales que combinan calidad, eficiencia y compromiso.
+Creemos que cada proyecto es único, por eso trabajamos mano a mano con nuestros clientes para transformar sus ideas 
+en hogares funcionales, estéticos y duraderos. Desde la planificación hasta la entrega final, 
+nos encargamos de todo el proceso con un equipo altamente capacitado y materiales de primera calidad',
+"At EloyCon, we've been building dreams for over 15 years. We specialize in the design and construction of custom homes, 
+offering comprehensive solutions that combine quality, efficiency, and commitment. We believe each project is unique, 
+which is why we work closely with our clients to transform their ideas into functional, aesthetic, and long-lasting homes. 
+From planning to final delivery, we manage the entire process with a highly trained team and top-quality materials"),
+('nosotros_1_descripcion3',
+'Nuestra misión es construir espacios que mejoren la vida de las personas, cuidando cada detalle y respetando siempre los plazos y 
+presupuestos acordados. Si buscas confianza, profesionalismo y resultados que superen tus expectativas, estás en el lugar correcto',
+"Our mission is to build spaces that improve people's lives, taking care of every detail and always respecting agreed deadlines and 
+budgets. If you're looking for trust, professionalism, and results that exceed your expectations, you've come to the right place."),
+('nosotros_2_titulo', 'Nuestra historia', 'Our history'),
+('nosotros_2_d1', 
+'Nacimos como un pequeño equipo de profesionales apasionados por la arquitectura y la construcción. Comenzamos con reformas y obras menores, siempre priorizando la calidad y la satisfacción del cliente',
+'We started as a small team of professionals passionate about architecture and construction. Our early projects focused on renovations and small-scale works, always prioritizing quality and client satisfaction'),
+('nosotros_2_d2',
+'Nos consolidamos en el sector con la construcción de nuestras primeras viviendas unifamiliares. Incorporamos nuevas tecnologías y ampliamos nuestro equipo técnico, lo que nos permitió asumir obras de mayor envergadura',
+'We gained a solid foothold in the industry with our first custom home builds. With new technologies and an expanded technical team, we began taking on larger and more ambitious construction projects'),
+('nosotros_2_d3',
+'En plena pandemia, apostamos por la innovación. Digitalizamos procesos, reforzamos nuestra presencia online y comenzamos a trabajar en proyectos de construcción sostenible y eficiencia energética',
+'Amid the pandemic, we embraced innovation. We digitalized processes, strengthened our online presence, and started developing sustainable construction projects focused on energy efficiency'),
+('nosotros_2_d4',
+'Hoy somos una empresa referente en el sector, con más de 100 proyectos entregados. Seguimos creciendo con el mismo compromiso de siempre: construir espacios que mejoran la vida de las personas, cuidando cada detalle',
+'Today, we are a leading company in the construction sector, with over 100 completed projects. We continue to grow with the same commitment as always: to build spaces that improve people’s lives, paying close attention to every detail'),
+('nosotros_3_titulo', 'Nuestro equipo', 'Our team'),
+('nosotros_3_t1', 'Líderes de empresa', 'Leadership team'),
+('nosotros_3_t2', 'Arquitectos e ingenieros', 'Architects and engineers'),
+('nosotros_3_t3', 'Equipo general', 'Core team'),
+('nosotros_4_titulo', 'Responsabilidad social corporativa', 'Corporate Social Responsibility'),
+('nosotros_4_t1', 'Sostenibilidad ambiental', 'Environmental sustainability'),
+('nosotros_4_t2', 'Seguridad y bienestar laboral', 'occupational safety and well-being'),
+('nosotros_4_t3', 'Compromiso con la comunidad', 'commitment to the community'),
+('nosotros_4_t4', 'Ética y transparencia', 'Ethics and transparency'),
+('nosotros_4_d1', 
+'Trabajamos con una firme política de gestión responsable de los recursos, priorizando el uso de materiales sostenibles y fomentando la eficiencia 
+energética en cada proyecto. Implementamos prácticas orientadas a la reducción de residuos y a la correcta gestión de los mismos, minimizando el impacto ambiental de nuestras obras',
+'We operate with a firm policy of responsible resource management, prioritizing the use of sustainable materials and promoting energy efficiency in every project. We implement 
+practices aimed at reducing and properly managing waste, minimizing the environmental impact of our projects'),
+('nosotros_4_d2',
+'Nuestro equipo humano es nuestro principal valor. Por ello, garantizamos las condiciones óptimas de seguridad en obra y promovemos programas de formación continua en prevención 
+de riesgos laborales, con el objetivo de asegurar un entorno de trabajo seguro y responsable',
+'Our team is our greatest asset. Therefore, we guarantee optimal safety conditions on site and promote ongoing training programs in occupational risk prevention, with the goal 
+of ensuring a safe and responsible work environment'),
+('nosotros_4_d3',
+'Creemos en el desarrollo local y en el fortalecimiento de las comunidades donde trabajamos. Colaboramos activamente con proveedores, profesionales y mano de obra local, 
+contribuyendo así al crecimiento económico de nuestro entorno',
+'We believe in local development and strengthening the communities where we work. We actively collaborate with local suppliers, professionals, and labor, thus contributing 
+to the economic growth of our surrounding communities'),
+('nosotros_4_d4',
+'Basamos nuestra actividad en principios éticos y de transparencia, manteniendo una comunicación clara, honesta y directa con nuestros clientes, proveedores y colaboradores, 
+garantizando así relaciones de confianza y largo plazo',
+'We base our activities on ethical principles and transparency, maintaining clear, honest, and direct communication with our clients, suppliers, and collaborators, 
+thus ensuring long-term, trusting relationships'); 
+
 -- FOOTER
 INSERT INTO traducciones(clave, es, en) VALUES
 ('footer1_1_titulo', 'Información de contacto', 'Contact information'),

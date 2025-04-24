@@ -6,7 +6,43 @@
 {% block content %}
     {% include "carrusel.html" %}
     <main>
-        <h1>Nosotros</h1> 
+        <div class="who-we-are-container">
+            <h2 class="title-us">{{ titles_us['nosotros_1_titulo'] }}</h2>
+            <p class="content-1-1">{{ content_1['nosotros_1_descripcion1'] }}</p>
+            <p class="content-1-2">{{ content_1['nosotros_1_descripcion2'] }}</p>
+            <div class="content-1-3">
+                <img src="{{ url_for('static', filename='img/img-to-web/us/who-we-are/img-background.webp') }}" alt="img_fondo">
+                <div class="gradient-background"></div>
+                <p>{{ content_1['nosotros_1_descripcion3'] }}</p>
+            </div>
+        </div>
+        <div class="our-history-container">
+            <h2 class="title-us">{{ titles_us['nosotros_2_titulo'] }}</h2>
+            <div class="our-history-content">
+                {% for c in content_2 %}
+                    {% if loop.index % 2 == 0 %}
+                    <div class="content-history-container">
+                        <img src="{{ url_for('static', filename='img/img-to-web/us/our-history/'+content_2[c]['img']) }}" alt="content_2[c]['img']">
+                        <p>{{ content_2[c]['texto'] }}</p>
+                    </div>
+                    {% else %}
+                    <div class="content-history-container">
+                        <p>{{ content_2[c]['texto'] }}</p>
+                        <img src="{{ url_for('static', filename='img/img-to-web/us/our-history/'+content_2[c]['img']) }}" alt="content_2[c]['img']">
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="line-history">
+                    <span>2010</span>
+                    <span>2015</span>
+                    <span>2020</span>
+                    <span>2025</span>
+                </div>
+            </div>
+        </div>
+        <div class="our-team-container">
+            
+        </div>
     </main>
     {% include "footer.html" %}
     {% block scripts %}

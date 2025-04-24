@@ -147,6 +147,38 @@ def get_content_exterior(language):
 
     return content
 
+# GET QUERIES TO NOSOTROS.HTML
+def get_titles_us(language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "nosotros___titulo"')
+    content = cursor.fetchall()
+    return {i['clave']:i['texto'] for i in content}
+
+def get_content_us_1(language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "nosotros_1_d%"')
+    content = cursor.fetchall()
+    return {i['clave']:i['texto'] for i in content}
+
+def get_content_us_2(language):
+    verify_language(language)
+
+    path = 'app\\static\\img\\img-to-web\\us\\our-history'
+    images = os.listdir(path)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "nosotros_2_d_"')
+    text = cursor.fetchall()
+
+    content = {}
+    for i,t in zip(images, text):
+        content[t['clave']] = {'texto':t['texto'], 'img': i}
+    return content
+
 # QUERY FOR FOOTER
 def get_values_footer(language):
     verify_language(language)
