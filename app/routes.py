@@ -44,10 +44,10 @@ def home():
     # get phrases from footer
     footer = get_values_footer(request.args.get('lang', 'es'))
     # get images form last projects (review)
-    img_last_projects_c = ['construction/project-1/hallway-houseB.webp', 'construction/project-2/movie-theaterB.webp',
+    img_last_projects_c = ['construction/project-1/stairsB.webp', 'construction/project-2/movie-theaterB.webp',
                            'construction/project-3/barbecue-areaB.webp', 'construction/project-4/poolB.webp',
                            'construction/project-5/kitchenB.webp', 'construction/project-6/stairsB.webp']
-    img_last_projects_r = ['reform/project-1/bathroomB.webp', 'reform/project-2/barbecue-areaB.webp', 'reform/project-3/dining-roomB.webp',
+    img_last_projects_r = ['reform/project-1/bathroomB.webp', 'reform/project-2/barbecue-areaB.webp', 'reform/project-3/officeB.webp',
                            'reform/project-4/roomB.webp', 'reform/project-5/stairsB.webp']
     return render_template('home.html',
                            text_q=text_q,
