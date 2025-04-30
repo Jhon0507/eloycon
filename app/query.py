@@ -1,6 +1,7 @@
 import mysql.connector
 from dotenv import load_dotenv
 import os
+from googletrans import Translator
 
 load_dotenv() # load environment variables
 
@@ -147,6 +148,15 @@ def get_content_exterior(language):
 
     return content
 
+# GET QUERIES TO PROYECTO.HTML
+def get_name_endpoint(language):
+    verify_language(language)
+
+    cursor = con.cursor()
+    cursor.execute(f'SELECT {language} FROM traducciones WHERE clave LIKE "proyecto_interiores__" OR clave LIKE "proyecto_exteriores__"')
+    names = cursor.fetchall()
+    return names
+
 # GET QUERIES TO NOSOTROS.HTML
 def get_titles_us(language):
     verify_language(language)
@@ -177,6 +187,66 @@ def get_content_us_2(language):
     content = {}
     for i,t in zip(images, text):
         content[t['clave']] = {'texto':t['texto'], 'img': i}
+    return content
+
+def get_content_us_3(language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute('SELECT nombre, apellidos, profesion, url_foto FROM empleados WHERE id NOT IN (1)')
+    employees_consulta = cursor.fetchall()
+
+    name_block_profesion = ['Lideres', 'Arquitectos e Ingenieros', 'Equipo General'] if language == 'es' else ['Leadership Team', 'Architects and Engineers', 'General Team']
+
+    employees = {'leadership-team': {}, 'architects-engineers': {}, 'general-team': {}}
+    cont = 0
+    translator = Translator()
+    # have all profesion in one string to do a request to API translator only one time
+    profession_text = "\n".join([employee['profesion'] for employee in employees_consulta])
+    translate_professions_text = translator.translate(profession_text, dest=language).text
+
+    # return to list all the professions
+    translate_professions = translate_professions_text.split("\n")
+
+    for employee, translate_profession in zip(employees_consulta, translate_professions):
+        cont += 1
+        team = employee['url_foto'].split('/')[-2]
+
+        employee_data = {
+            'name': f'{employee['nombre']} {employee['apellidos']}',
+            'profession': translate_profession,
+            'url': employee['url_foto'].replace('app/static/', '')
+        }
+
+        if team in employees:
+            employees[team][f'employee{cont}'] = employee_data
+
+    return employees, name_block_profesion
+
+def get_content_us_4(language):
+    verify_language(language)
+
+    path = 'app\\static\\img\\img-to-web\\us\\corporate-social-responsibility'
+    svgs = os.listdir(path)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "nosotros_4_t_"')
+    content_title_query = cursor.fetchall()
+
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "nosotros_4_d_"')
+    content_description_query = cursor.fetchall()
+
+    content = {}
+    cont = 0
+
+    for title, description, svg in zip(content_title_query, content_description_query, svgs):
+        cont += 1
+        content[f'content-{cont}'] = {
+            'title': title['texto'],
+            'description': description['texto'],
+            'url': f'img/img-to-web/us/corporate-social-responsibility/{svg}'
+        }
+
     return content
 
 # QUERY FOR FOOTER

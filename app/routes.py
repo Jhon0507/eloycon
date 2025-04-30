@@ -30,25 +30,27 @@ def inherit_global_variables():
 @main.route('/')
 @main.route('/home')
 def home():
-    # get general title and description
-    text_q = get_title_description_our_qualities(request.args.get('lang', 'es'))
-    # get icons, title and description for the 3 containers
-    text_qualities = get_phrases_our_qualities(request.args.get('lang', 'es'))
+    language = request.args.get('lang', 'es')
+    # section our qualities
+    text_q = get_title_description_our_qualities(language)
+    text_qualities = get_phrases_our_qualities(language)
 
-    # get general title and description
-    text_process = get_title_description_our_process(request.args.get('lang', 'es'))
-    # get images, title and description for the 3 containers
-    content_process = get_content_our_process(request.args.get('lang', 'es'))
-    # get title from last projects
-    title = get_title_last_projects(request.args.get('lang', 'es'))
-    # get phrases from footer
-    footer = get_values_footer(request.args.get('lang', 'es'))
+    # section our process
+    text_process = get_title_description_our_process(language)
+    content_process = get_content_our_process(language)
+
+    # section last projects
+    title = get_title_last_projects(language)
     # get images form last projects (review)
     img_last_projects_c = ['construction/project-1/stairsB.webp', 'construction/project-2/movie-theaterB.webp',
                            'construction/project-3/barbecue-areaB.webp', 'construction/project-4/poolB.webp',
                            'construction/project-5/kitchenB.webp', 'construction/project-6/stairsB.webp']
-    img_last_projects_r = ['reform/project-1/bathroomB.webp', 'reform/project-2/barbecue-areaB.webp', 'reform/project-3/officeB.webp',
+    img_last_projects_r = ['reform/project-1/bathroomB.webp', 'reform/project-2/barbecue-areaB.webp',
+                           'reform/project-3/officeB.webp',
                            'reform/project-4/roomB.webp', 'reform/project-5/stairsB.webp']
+
+    # section footer
+    footer = get_values_footer(language)
     return render_template('home.html',
                            text_q=text_q,
                            text_qualities=text_qualities,
@@ -62,14 +64,11 @@ def home():
 @main.route('/projects')
 @main.route('/proyectos')
 def proyectos():
-    # get title and description
-    content = get_title_description_projects(request.args.get('lang', 'es'))
-    # get img and content for interior section
-    interiors = get_content_interior(request.args.get('lang', 'es'))
-    # get img and content for exterior section
-    exteriors = get_content_exterior(request.args.get('lang', 'es'))
-    # load values footer
-    footer = get_values_footer(request.args.get('lang', 'es'))
+    language = request.args.get('lang', 'es')
+    content = get_title_description_projects(language)  # get title and description
+    interiors = get_content_interior(language)  # get img and content for interior section
+    exteriors = get_content_exterior(language)  # get img and content for exterior section
+    footer = get_values_footer(language)  # load values footer
     return render_template('proyectos.html',
                            content=content,
                            interiors=interiors,
@@ -77,21 +76,28 @@ def proyectos():
                            footer=footer
                            )
 
+
+@main.route('/proyectos/<section>')
+def seccion_proyectos(section):
+    return 'casas'
+
 @main.route('/us')
 @main.route('/nosotros')
 def nosotros():
-    # get all titles
-    titles_us = get_titles_us(request.args.get('lang', 'es'))
-    # get content section 1
-    content_1 = get_content_us_1(request.args.get('lang', 'es'))
-    # get content section 2
-    content_2 = get_content_us_2(request.args.get('lang', 'es'))
-    # load values footer
-    footer = get_values_footer(request.args.get('lang', 'es'))
+    language = request.args.get('lang', 'es')
+    titles_us = get_titles_us(language)  # get all titles
+    content_1 = get_content_us_1(language)  # get content section 1
+    content_2 = get_content_us_2(language)  # get content section 2
+    content_3, title_content_us_3  = get_content_us_3(language)  # get content section 3
+    content_4 = get_content_us_4(language)
+    footer = get_values_footer(language)  # load values footer
     return render_template('nosotros.html',
                            titles_us=titles_us,
                            content_1=content_1,
                            content_2=content_2,
+                           title_content_us_3 = title_content_us_3,
+                           content_3=content_3,
+                           content_4=content_4,
                            footer=footer)
 
 @main.route('/services')

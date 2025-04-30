@@ -55,7 +55,8 @@
         </div>  
     </main>
     {% include "footer.html" %}
-    {% block scripts %}
-        <script src="{{ url_for('static', filename='js/last_projects.js') }}"></script>
-    {% endblock %}
+    
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/last_projects.js') }}"></script>
 {% endblock %}

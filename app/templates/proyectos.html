@@ -18,7 +18,7 @@
                 {% for key, value in values[1:] %}
                 <div>
                     <img src="{{ url_for('static', filename='img/img-to-web/projects/interior/' + value['img']) }}" alt="{{value['img']}}" class="img-container">
-                    <a href="" class="link-option">{{ value['texto'] }}</a>
+                    <a href="{{ url_for('main.seccion_proyectos', section = value['texto'] | lower) }}" class="link-option">{{ value['texto'] }}</a>
                 </div>
                 {% endfor %}
             </div>
@@ -30,14 +30,12 @@
                 {% for key, value in values[1:] %}
                 <div>
                     <img src="{{ url_for('static', filename='img/img-to-web/projects/exterior/' + value['img']) }}" alt="{{value['img']}}" class="img-container">
-                    <a href="" class="link-option">{{ value['texto'] }}</a>
+                    <a href="{{ url_for('main.seccion_proyectos', section = value['texto'] | lower) }}" class="link-option">{{ value['texto'] }}</a>
                 </div>
                 {% endfor %}
             </div>
         </div>
     </main>
     {% include "footer.html" %}
-    {% block scripts %}
-        
-    {% endblock %}
-{% endblock %}
+{% endblock %}    
+{% block scripts %}{% endblock %}

@@ -6,7 +6,7 @@
 {% block content %}
     {% include "carrusel.html" %}
     <main>
-        <div class="who-we-are-container">
+        <div class="who-we-are-container"> <!-- who we are -->
             <h2 class="title-us">{{ titles_us['nosotros_1_titulo'] }}</h2>
             <p class="content-1-1">{{ content_1['nosotros_1_descripcion1'] }}</p>
             <p class="content-1-2">{{ content_1['nosotros_1_descripcion2'] }}</p>
@@ -16,7 +16,7 @@
                 <p>{{ content_1['nosotros_1_descripcion3'] }}</p>
             </div>
         </div>
-        <div class="our-history-container">
+        <div class="our-history-container"> <!-- our history -->
             <h2 class="title-us">{{ titles_us['nosotros_2_titulo'] }}</h2>
             <div class="our-history-content">
                 {% for c in content_2 %}
@@ -40,12 +40,69 @@
                 </div>
             </div>
         </div>
-        <div class="our-team-container">
+        <div class="our-team-container">  <!-- our team -->
+            <h2 class="title-us">{{ titles_us['nosotros_3_titulo'] }}</h2>
+            {% for title in title_content_us_3 %}
+            <div class="content-employees">
+                <div class="ver">
+                    <div class="title-employees">
+                        <span>{{ title }}</span>
+                        <div id="contenedor-svg-{{ loop.index }}">
+                            <svg width="100%" height="100%" viewBox="0 0 30 30">
+                                <polyline points="3,20 15,10 27,20" fill="none" stroke="#d0d0d0" stroke-width="2" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-employees" id="photo-employees-{{ loop.index }}">
+                    {% if loop.index == 1 %}
+                        {% for values in content_3['leadership-team'] %}
+                        <div>
+                            <img src="{{ url_for('static', filename=content_3['leadership-team'][values]['url']) }}" alt="img employee">
+                            <h4>{{ content_3['leadership-team'][values]['name'] }}</h4>
+                            <p>{{ content_3['leadership-team'][values]['profession'] }}</p>
+                        </div>
+                        {% endfor %}
+                    {% elif loop.index == 2 %}
+                        {% for values in content_3['architects-engineers'] %}
+                        <div>
+                            <img src="{{ url_for('static', filename=content_3['architects-engineers'][values]['url']) }}" alt="img employee">
+                            <h4>{{ content_3['architects-engineers'][values]['name'] }}</h4>
+                            <p>{{ content_3['architects-engineers'][values]['profession'] }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for values in content_3['general-team'] %}
+                        <div>
+                            <img src="{{ url_for('static', filename=content_3['general-team'][values]['url']) }}" alt="img employee">
+                            <h4>{{ content_3['general-team'][values]['name'] }}</h4>
+                            <p>{{ content_3['general-team'][values]['profession'] }}</p>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
             
+        </div>
+        <div class="rsc"> <!-- responsibility social corporate -->
+            <h2 class="title-us">{{ titles_us['nosotros_4_titulo'] }}</h2>
+            <div class="content-rsc-container">
+                {% for i in content_4 %}
+                <div class="content-rsc">
+                    <div>
+                        <img src="{{ url_for('static', filename=content_4[i]['url']) }}" alt="svg">
+                    </div>
+                    <h3>{{content_4[i]['title']}}</h3>
+                    <p>{{content_4[i]['description']}}</p>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </main>
     {% include "footer.html" %}
-    {% block scripts %}
-        
-    {% endblock %}
+    
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/our_team.js')  }}"></script>
 {% endblock %}
