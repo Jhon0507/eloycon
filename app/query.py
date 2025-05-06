@@ -1,7 +1,10 @@
+from pprint import pprint
+
 import mysql.connector
 from dotenv import load_dotenv
 import os
 from googletrans import Translator
+import json
 
 load_dotenv() # load environment variables
 
@@ -12,9 +15,12 @@ con=mysql.connector.connect(
     database=os.getenv('DATABASE')
 )
 
+translator = Translator()
+
 def verify_language(language):
     if language not in ['es', 'en']:
         raise ValueError('Language not supported')
+
 
 # GET QUERIES TO BASE.HTML
 def get_values_nav(language):
@@ -49,26 +55,28 @@ def get_phrases_our_qualities(language):
     verify_language(language)
 
     cursor = con.cursor(dictionary=True)
-    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "home_cualidades%"')
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "home_cualidades___"')
     text = cursor.fetchall()
     structured_text = {}
+
     for i in text:
-        if i['clave'][-1] == '1':
-            if i['clave'][-2] == 't':
-                structured_text['home_qualities_1'] = {'svg': 'constructor.svg'}
-                structured_text['home_qualities_1'].update({'title': i['texto']})
-            else: structured_text['home_qualities_1'].update({'description': i['texto']})
-        elif i['clave'][-1] == '2':
-            if i['clave'][-2] == 't':
-                structured_text['home_qualities_2'] = {'svg': 'organization.svg'}
-                structured_text['home_qualities_2'].update({'title': i['texto']})
-            else: structured_text['home_qualities_2'].update({'description': i['texto']})
-        elif i['clave'][-1] == '3':
-            if i['clave'][-2] == 't':
-                structured_text['home_qualities_3'] = {'svg': 'personalization.svg'}
-                structured_text['home_qualities_3'].update({'title': i['texto']})
-            else: structured_text['home_qualities_3'].update({'description': i['texto']})
+        key = i['clave']
+        suffix = key[-1]  # '1', '2', '3'
+        is_title = key[-2] == 't'
+
+        quality_key = f'home_qualities_{suffix}'
+
+        if quality_key not in structured_text:
+            structured_text[quality_key] = {}
+
+        if is_title:
+            svgs = {'1': 'constructor.svg', '2': 'organization.svg', '3': 'personalization.svg'}
+            structured_text[quality_key]['svg'] = svgs.get(suffix, '')
+            structured_text[quality_key]['title'] = i['texto']
+        else:
+            structured_text[quality_key]['description'] = i['texto']
     return structured_text
+
 
 def get_title_description_our_process(language):
     verify_language(language)
@@ -77,6 +85,7 @@ def get_title_description_our_process(language):
     cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave in ("home_proceso_titulo", "home_proceso_descripcion")')
     content = cursor.fetchall()
     return {i['clave']:i['texto'] for i in content}
+
 
 def get_content_our_process(language):
     verify_language(language)
@@ -100,11 +109,13 @@ def get_content_our_process(language):
 
     return content
 
+
 def get_title_last_projects(language):
     verify_language(language)
     cursor = con.cursor()
     cursor.execute(f'SELECT {language} FROM traducciones WHERE clave = "home_ultimos_proyectos_titulo"')
     return cursor.fetchall()[0][0]
+
 
 # GET QUERIES TO PROYECTOS.HTML
 def get_title_description_projects(language):
@@ -115,6 +126,7 @@ def get_title_description_projects(language):
     content = cursor.fetchall()
 
     return {i['clave']:i['texto'] for i in content}
+
 
 def get_content_interior(language):
     verify_language(language)
@@ -132,6 +144,7 @@ def get_content_interior(language):
 
     return content
 
+
 def get_content_exterior(language):
     verify_language(language)
     path = 'app\\static\\img\\img-to-web\\projects\\exterior'
@@ -148,14 +161,102 @@ def get_content_exterior(language):
 
     return content
 
-# GET QUERIES TO PROYECTO.HTML
-def get_name_endpoint(language):
+
+# GET QUERIES TO PROYECTO_CATEGORY.HTML
+def get_name_endpoint():
+    cursor = con.cursor()
+    cursor.execute(f'SELECT es, en FROM traducciones WHERE clave LIKE "proyecto_interiores__" OR clave LIKE "proyecto_exteriores__" ORDER BY id ASC')
+    names = cursor.fetchall()
+    names_lowercase = [(es.lower(), en.lower()) for es, en in names]
+    return names_lowercase
+
+
+def get_title_for_every_project(language, section):
     verify_language(language)
 
     cursor = con.cursor()
-    cursor.execute(f'SELECT {language} FROM traducciones WHERE clave LIKE "proyecto_interiores__" OR clave LIKE "proyecto_exteriores__"')
-    names = cursor.fetchall()
-    return names
+    cursor.execute(f'SELECT es, en FROM traducciones WHERE clave LIKE "proyecto_interiores__" OR clave LIKE "proyecto_exteriores__"')
+    titles = cursor.fetchall()
+    for title in titles:
+        if section == title[0].lower() or section == title[1].lower():
+            if language == 'es':
+                return title[0]
+            elif language == 'en':
+                return title[1]
+    return 'wrong title'
+
+
+def get_values_for_every_project(type_name, language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT p.id, nombre, url, tipo FROM proyectos p JOIN imagenes_proyectos i ON p.id = i.id_proyecto WHERE i.tipo = "{type_name}"')
+    projects = cursor.fetchall()
+    content = {}
+    for project in projects:
+        key = f'proyecto-{project["id"]}'
+        if key not in content:
+            cursor.execute(f'SELECT i.tipo FROM proyectos p JOIN imagenes_proyectos i ON p.id = i.id_proyecto WHERE p.id = {project['id']}')
+            types = cursor.fetchall()
+            content[key] = {'id': project['id'],
+                            'name': project['nombre'],
+                            'type': list(sorted(set([i['tipo'] for i in types]))),
+                            'url': [project['url'].replace('app/static/', '')]}
+        else:
+            content[key]['url'].append(project['url'].replace('app/static/', ''))
+
+    if language == 'en':
+        with open('app/json/name_projects.json', 'r', encoding='utf-8') as filename:
+            names = json.load(filename)
+        with open('app/json/type_name_category_projects.json', 'r', encoding='utf-8') as filename:
+            categories = json.load(filename)
+
+        for info in content:
+            list_types = []
+            for i in content[info]['type']:
+                list_types.append(categories[i])
+            content[info]['type'] = list_types
+
+        for name in names:
+            for info in content:
+                if names[name]['es'] == content[info]['name']:
+                    content[info]['name'] = names[name]['en']
+    return content
+
+# GET QUERIES TO PROYECTO.HTML
+def get_info_of_project(id_project, language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT p.id, p.nombre, p.ciudad, t.{language}, i.url '
+                   f'FROM proyectos p '
+                   f'JOIN traducciones t ON p.id = t.id_proyecto '
+                   f'JOIN imagenes_proyectos i ON p.id = i.id_proyecto '
+                   f'WHERE p.id = {id_project} AND p.estado = "Terminado"')
+    values_query = cursor.fetchall()
+    values = {'id': None, 'title': None, 'city': None, 'url':[], 'description': []}
+    for value in values_query:
+        if values['id'] is None:
+            values['id'] = value['id']
+        if values['title'] is None:
+            values['title'] = value['nombre']
+        if values['city'] is None:
+            values['city'] = value['ciudad']
+        if value[language] not in values['description']:
+            values['description'].append(value[language])
+        if value['url'] not in values['url']:
+            values['url'].append(value['url'].replace('app/static/', ''))
+
+    values['url'] = list(sorted(set(values['url'])))
+
+    if language == 'en':
+        with open('json/name_projects.json', 'r', encoding='utf-8') as filename:
+            titles = json.load(filename)
+        for title in titles:
+            if titles[title]['es'] == values['title']:
+                values['title'] = titles[title]['en']
+
+    return values
 
 # GET QUERIES TO NOSOTROS.HTML
 def get_titles_us(language):
@@ -166,6 +267,7 @@ def get_titles_us(language):
     content = cursor.fetchall()
     return {i['clave']:i['texto'] for i in content}
 
+
 def get_content_us_1(language):
     verify_language(language)
 
@@ -173,6 +275,7 @@ def get_content_us_1(language):
     cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "nosotros_1_d%"')
     content = cursor.fetchall()
     return {i['clave']:i['texto'] for i in content}
+
 
 def get_content_us_2(language):
     verify_language(language)
@@ -189,6 +292,7 @@ def get_content_us_2(language):
         content[t['clave']] = {'texto':t['texto'], 'img': i}
     return content
 
+
 def get_content_us_3(language):
     verify_language(language)
 
@@ -200,7 +304,7 @@ def get_content_us_3(language):
 
     employees = {'leadership-team': {}, 'architects-engineers': {}, 'general-team': {}}
     cont = 0
-    translator = Translator()
+
     # have all profesion in one string to do a request to API translator only one time
     profession_text = "\n".join([employee['profesion'] for employee in employees_consulta])
     translate_professions_text = translator.translate(profession_text, dest=language).text
@@ -222,6 +326,7 @@ def get_content_us_3(language):
             employees[team][f'employee{cont}'] = employee_data
 
     return employees, name_block_profesion
+
 
 def get_content_us_4(language):
     verify_language(language)
@@ -248,6 +353,7 @@ def get_content_us_4(language):
         }
 
     return content
+
 
 # QUERY FOR FOOTER
 def get_values_footer(language):

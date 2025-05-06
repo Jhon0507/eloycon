@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/proyecto_category.css') }}">
+{% endblock %}
+{% block content %}
+    <main>
+        <div class="carrusel-container">
+            <div class="title">{{ title }}</div>
+            <div class="carrusel-slide" id="carrusel">
+                {% for img in imgs %}
+                <img src="{{ url_for('static', filename=img) }}" alt="img">
+                {% endfor %}
+                <img src="{{ url_for('static', filename=imgs[0]) }}" alt="img">
+            </div>
+        </div>
+        <div class="projects-container">
+            {% for project in projects %}
+            <div class="project-container">
+                <div class="project-img-container" id="project-{{ projects[project]['id'] }}">
+                    <a href="">
+                        <img src="{{ url_for('static', filename=projects[project]['url'][0]) }}" alt="img">
+                    </a>
+                </div>
+                <div class="project-name-container">
+                    <p>{{ projects[project]['name'] }}</p>
+                </div>
+                <div class="project-category-container">
+                    <ul>
+                        {% for type in projects[project]['type'] %}
+                        <li class="category {{ type.replace(' ', '-') }}">{{ type }}</li>
+                        {% endfor %}
+                    </ul>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    {% include "footer.html" %}  
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+{% endblock %}

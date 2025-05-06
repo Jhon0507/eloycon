@@ -2,23 +2,21 @@
 START STYLE CARRUSEL
 */
 .carrusel-container {
-    width: 100vw;
-    max-width: 100%;
+    width: 100%;
     overflow: hidden;
     position: relative;
 }
 
 .carrusel-slide {
-    width: 100%;
-    height: 100%;
+    width: auto;
     display: flex;
     transition: transform 1s ease-in-out;
 }
 
 .carrusel-slide img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
+    flex-shrink: 0;
 }
 /*
 END STYLE CARRUSEL

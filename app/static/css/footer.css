@@ -6,7 +6,7 @@ footer {
 }
 
 .footer-container {
-    background-color: #777777;
+    background-color: #5b5b5b;
     display: flex;
     justify-content: space-around;
 }
@@ -57,10 +57,16 @@ footer {
 .fa-whatsapp {
     margin-top: 5px;
     padding: 10px;
-    background-color: #d0d0d0;
-    color: #25d366;
+    background-color: #b1b1b1;
+    color: #278d46;
     font-size: 3rem;
     border-radius: 50%;
+}
+
+.fa-whatsapp:hover {
+    background-color: #d0d0d0;
+    color: #25d366;
+    transform: scale(1.1);
 }
 /*
 END STYLE FOOTER CONTACT

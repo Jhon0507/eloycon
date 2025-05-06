@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/proyecto.css') }}">
+{% endblock %}
+{% block content %}
+    {% include "carrusel.html" %}
+    <main>
+        <div class="content-project">
+            <div><img src="{{ url_for('static', filename=random_img) }}" alt=""></div>
+            <div>
+                <h2>{{ content['title'] }}</h2>
+                <h3>{{ content['city'] }}</h3>
+                {% for text in content['description'] %}
+                <p>{{ text }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div>{{ content }}</div>
+    </main>
+    {% include "footer.html" %}
+    
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
+{% endblock %}

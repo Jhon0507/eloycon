@@ -38,4 +38,7 @@
     </main>
     {% include "footer.html" %}
 {% endblock %}    
-{% block scripts %}{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
+{% endblock %}

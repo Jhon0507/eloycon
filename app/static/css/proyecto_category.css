@@ -1,0 +1,147 @@
+.title {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 2.5rem;
+    width: 100%;
+    position: absolute;
+    padding: 2% 0 2% 5%;
+    z-index: 7;
+    top: 45%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+/*
+START STYLE FOR EVERY PROJECT
+*/
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 50px;
+    margin: 5rem 0;
+}
+
+.project-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.project-img-container a img {
+    width: 100%;
+}
+
+.project-name-container p{
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.project-category-container {
+    height: auto;
+}
+
+.project-category-container ul {
+    padding: 0;
+    margin-top: 10px;
+}
+
+.category {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 300;
+    padding: 1px 5px;
+    color: black;
+    background-color: antiquewhite;  /*default color*/
+    border: 1px solid #181a1b;
+    border-radius: 10px;
+}
+
+.sala-de-estar, .living-room {
+    background-color: #D18800;
+}
+
+.cocina, .kitchen {
+    background-color: #B84C00;
+}
+
+.dormitorio, .bedroom {
+    background-color: #6C63FF;
+}
+
+.baño, .bathroom {
+    background-color: #00BFFF;
+}
+
+.escaleras, .stairs {
+    background-color: #A9A9A9;
+}
+
+.despacho, .office {
+    background-color: #005F73;
+}
+
+.gym {
+    background-color: #2E8B57;
+}
+
+.sala-de-cine, .home-theater {
+    background-color: #007190;
+}
+
+.zona-de-lavado, .laundry-room {
+    background-color: #ADD8E6;
+}
+
+.fachada, .facades {
+    background-color: #F4A261;
+}
+
+.terraza, .terrace {
+    background-color: #FFA07A;
+}
+
+.piscina, .pool {
+    background-color: #00CED1;
+}
+
+.garaje, .garage {
+    background-color: #696969;
+}
+
+.cerca, .fence {
+    background-color: #8B4513;
+}
+
+.patio {
+    background-color: #90EE90;
+}
+
+.area-de-barbacoa, .bbq-area {
+    background-color: #CD5C5C;
+}
+
+.estanque, .pond {
+    background-color: #4682B4;
+}
+
+.patio-de-niños, .playground {
+    background-color: #FF69B4;
+}
+/*
+END STYLE FOR EVERY PROJECT
+*/
+
+
+@media (max-width: 800px) {
+.projects-container {
+    grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .projects-container {
+        grid-template-columns: repeat(1, 1fr);
+        }
+    }
