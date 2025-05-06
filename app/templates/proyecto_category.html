@@ -17,8 +17,8 @@
         <div class="projects-container">
             {% for project in projects %}
             <div class="project-container">
-                <div class="project-img-container" id="project-{{ projects[project]['id'] }}">
-                    <a href="">
+                <div class="project-img-container">
+                    <a href="{{ url_for('main.proyecto', id_proyecto=projects[project]['id']) }}">
                         <img src="{{ url_for('static', filename=projects[project]['url'][0]) }}" alt="img">
                     </a>
                 </div>

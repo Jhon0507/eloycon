@@ -12,7 +12,7 @@ function updateCarousel() {
 
     // enable or disable button
     prevBtn.disabled = cont === 0;
-    nextBtn.disabled = cont === numImgsLastProjects - 3;
+    nextBtn.disabled = cont === numImgsLastProjects - 4;
 }
 
 prevBtn.addEventListener('click', () => {
@@ -23,7 +23,7 @@ prevBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-    if (cont < numImgsLastProjects - 3) {
+    if (cont < numImgsLastProjects - 4) {
         cont++;
         updateCarousel();
     }

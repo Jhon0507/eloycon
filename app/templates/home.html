@@ -39,16 +39,11 @@
         <div class="last-projects-container">
             <h2 class="title-last-projects">{{ title }}</h2>
             <div class="last-projects">
-                {% for construction in img_last_projects_c %}
-                <a href="">
-                    <img src="{{ url_for('static', filename='img/home-projects/' + construction) }}" alt="{{construction.split('.')[0]}}">
+                {% for id,url in last_projects.items() %}
+                <a href="{{ url_for('main.proyecto', id_proyecto=id) }}">
+                    <img src="{{ url_for('static', filename=url) }}" alt="img">
                 </a>
-                {% endfor %}
-                {% for reform in img_last_projects_r %}
-                <a href="">
-                    <img src="{{ url_for('static', filename='img/home-projects/' + reform) }}" alt="{{reform.split('.')[0]}}">
-                </a>
-                {% endfor %}   
+                {% endfor %}  
             </div>
             <button class="prev"><i class="fa-solid fa-caret-left"></i></button>
             <button class="next"><i class="fa-solid fa-caret-right"></i></button>

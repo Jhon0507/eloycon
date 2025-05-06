@@ -116,6 +116,22 @@ def get_title_last_projects(language):
     cursor.execute(f'SELECT {language} FROM traducciones WHERE clave = "home_ultimos_proyectos_titulo"')
     return cursor.fetchall()[0][0]
 
+def get_urls_for_last_projects():
+    cursor = con.cursor(dictionary=True)
+    cursor.execute('SELECT p.id, i.url '
+                   'FROM '
+                   '(SELECT id FROM proyectos WHERE estado = "Terminado" ORDER BY fecha_final_real DESC LIMIT 8) AS p '
+                   'JOIN imagenes_proyectos i ON p.id = i.id_proyecto')
+    content_query = cursor.fetchall()
+    content = {}
+    for url in content_query:
+        if url['id'] not in content:
+            content[url['id']] = []
+        if url['url'] not in content[url['id']]:
+            content[url['id']].append(url['url'].replace('app/static/', ''))
+
+    return content
+
 
 # GET QUERIES TO PROYECTOS.HTML
 def get_title_description_projects(language):
@@ -198,7 +214,7 @@ def get_values_for_every_project(type_name, language):
         if key not in content:
             cursor.execute(f'SELECT i.tipo FROM proyectos p JOIN imagenes_proyectos i ON p.id = i.id_proyecto WHERE p.id = {project['id']}')
             types = cursor.fetchall()
-            content[key] = {'id': project['id'],
+            content[key] = {'id': int(project['id']),
                             'name': project['nombre'],
                             'type': list(sorted(set([i['tipo'] for i in types]))),
                             'url': [project['url'].replace('app/static/', '')]}

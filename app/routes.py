@@ -52,13 +52,11 @@ def home():
 
     # section last projects
     title = get_title_last_projects(language)
-    # get images form last projects (review)
-    img_last_projects_c = ['construction/project-1/stairsB.webp', 'construction/project-2/movie-theaterB.webp',
-                           'construction/project-3/barbecue-areaB.webp', 'construction/project-4/poolB.webp',
-                           'construction/project-5/kitchenB.webp', 'construction/project-6/stairsB.webp']
-    img_last_projects_r = ['reform/project-1/bathroomB.webp', 'reform/project-2/barbecue-areaB.webp',
-                           'reform/project-3/officeB.webp',
-                           'reform/project-4/roomB.webp', 'reform/project-5/stairsB.webp']
+
+    # from de last projects take random photo and will change when we reload section home
+    last_projects = get_urls_for_last_projects()
+    for i in last_projects:
+        last_projects[i] = random.choice(last_projects[i])
 
     # section footer
     footer = get_values_footer(language)
@@ -67,10 +65,9 @@ def home():
                            text_qualities=text_qualities,
                            text_process=text_process,
                            content_process=content_process,
-                           title=title,
-                           footer=footer,
-                           img_last_projects_c=img_last_projects_c,
-                           img_last_projects_r=img_last_projects_r)
+                           title=title, # last projects
+                           last_projects=last_projects,
+                           footer=footer,)
 
 
 @main.route('/projects')
