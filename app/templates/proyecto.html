@@ -16,7 +16,16 @@
                 {% endfor %}
             </div>
         </div>
-        <div>{{ content }}</div>
+        <div class="container-imgs">
+            <div class="imgs-project">
+                {% for img in content['url'] %}
+                <img src="{{ url_for('static', filename=img) }}" alt="img">
+                {% endfor %}
+            </div>
+            <button class="prev"><i class="fa-solid fa-caret-left"></i></button>
+            <button class="next"><i class="fa-solid fa-caret-right"></i></button>
+        </div>
+        
     </main>
     {% include "footer.html" %}
     
@@ -24,4 +33,5 @@
 {% block scripts %}
     <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
     <script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/imgs_project.js') }}"></script>
 {% endblock %}

@@ -133,6 +133,7 @@ START STYLE LAST PROJECTS
 .last-projects-container {
     width: 100vw;
     margin-top: 7rem;
+    position: relative;
 }
 
 .title-last-projects {
@@ -176,8 +177,8 @@ button.prev, button.next {
     border: 0;
     padding: 0 .8vw;
     border-radius: 50%;
-    position: relative;
-    bottom: 15vw;
+    position: absolute;
+    top: 54%;
     box-shadow: 0 5px 5px black;
 }
 
@@ -187,7 +188,7 @@ button.prev:hover, button.next:hover {
 } 
 
 .next {
-    left: 86%;
+    right: 5%;
 }
 
 .prev {

@@ -250,7 +250,7 @@ def get_info_of_project(id_project, language):
     values['url'] = list(sorted(set(values['url'])))
 
     if language == 'en':
-        with open('json/name_projects.json', 'r', encoding='utf-8') as filename:
+        with open('app/json/name_projects.json', 'r', encoding='utf-8') as filename:
             titles = json.load(filename)
         for title in titles:
             if titles[title]['es'] == values['title']:
