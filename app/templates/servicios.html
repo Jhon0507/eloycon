@@ -6,10 +6,57 @@
 {% block content %}
     {% include "carrusel.html" %}
     <main>
-        <h1>Servicios</h1> 
+        <div class="container-services-title">
+            <h2>{{ content['title'] }}</h2>
+            <p>{{ content['description'] }}</p>
+        </div>
+        <div class="container-services-description">
+            <h3>{{ content['subtitle'] }}</h3>
+            <div class="container-grid-description">
+                {% for info in content['content'] %}
+                <div class="container-service-{{loop.index}}">
+                    <div class="container-title-description">
+                        <img src="{{ url_for('static', filename=content['content'][info]['url']) }}" alt="img">
+                        <div>
+                            <h4>{{ content['content'][info]['title'] }}</h4>
+                        </div>
+                    </div>
+                    <div class="container-description-description">
+                        <p>{{ content['content'][info]['description'] }}</p>
+                    </div>
+                    {% if content['content'][info]['list'] %}
+                    <div class="container-list-description">
+                        <ul>
+                            {% for list in content['content'][info]['list'] %}
+                            <li>{{ list }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="show-phrases">
+            <div class="background-phrase">
+                <p>"{{ content['phrases'] | random }}"</p>
+            </div>
+        </div>
+        <div class="container-btns">
+            <div class="container-btns-text">
+                <h3>{{ content['final_title'] }}</h3>
+                <p>{{ content['final_text'] }}</p>
+            </div>
+            <div class="container-btns-btn">
+                <a href="{{ url_for('main.contacto') }}">{{ content['btn_presupuesto'] }}</a>
+                <a href="{{ url_for('main.proyectos') }}">{{ content['btn_proyecto'] }}</a>
+            </div>
+        </div>
     </main>
     {% include "footer.html" %}
-    {% block scripts %}
-        
-    {% endblock %}
+    
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
 {% endblock %}

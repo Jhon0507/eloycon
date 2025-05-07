@@ -370,6 +370,57 @@ def get_content_us_4(language):
 
     return content
 
+# QUERY FOR SERVICIOS.HTML
+def get_all_content_services(language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} FROM traducciones WHERE clave LIKE "servicio%"')
+    content_query = cursor.fetchall()
+    # define principal content to return
+    content = {
+        'title': next(item[language] for item in content_query if item['clave'] == 'servicio_titulo'),
+        'description': next(item[language] for item in content_query if item['clave'] == 'servicio_descripcion'),
+        'subtitle': next(item[language] for item in content_query if item['clave'] == 'servicio_subtitulo'),
+        'content': {},
+        'phrases': [],
+        'final_title': next(item[language] for item in content_query if item['clave'] == 'servicio_titulo_final'),
+        'final_text': next(item[language] for item in content_query if item['clave'] == 'servicio_texto_final'),
+        'btn_presupuesto': next(item[language] for item in content_query if item['clave'] == 'servicio_boton_presupuesto'),
+        'btn_proyecto': next(item[language] for item in content_query if item['clave'] == 'servicio_boton_ver_proyectos')
+    }
+    # add the title and description to content['content'] for every part
+    for i in range(1, 6):
+        title_key = f'servicio_titulo_{i}'
+        description_key = f'servicio_descripcion_{i}'
+
+        title = next((item[language] for item in content_query if item['clave'] == title_key), '')
+        description = next((item[language] for item in content_query if item['clave'] == description_key), '')
+
+        content['content'][f'description-{i}'] = {
+            'title': title,
+            'description': description
+        }
+
+    # add url of imgs for every description
+    content['content']['description-1']['url'] = 'img/img-to-web/services/1.webp'
+    content['content']['description-2']['url'] = 'img/img-to-web/services/2.webp'
+    content['content']['description-3']['url'] = 'img/img-to-web/services/3.webp'
+    content['content']['description-4']['url'] = 'img/img-to-web/services/4.webp'
+    content['content']['description-5']['url'] = 'img/img-to-web/services/5.webp'
+
+    # there are some parts that have a list, for example parts 1, 2 and 3, well add that list
+    content['content']['description-1']['list'] = next(
+        item[language] for item in content_query if item['clave'] == 'servicio_descripcion_1_lista').split(' _ ')
+    content['content']['description-2']['list'] = next(
+        item[language] for item in content_query if item['clave'] == 'servicio_descripcion_2_lista').split(' _ ')
+    content['content']['description-3']['list'] = next(
+        item[language] for item in content_query if item['clave'] == 'servicio_descripcion_3_lista').split(' _ ')
+
+    # add list of phrases
+    for i in range(1, 6):
+        content['phrases'].append(next(item[language] for item in content_query if item['clave'] == f'servicio_frase_{i}'))
+    return content
 
 # QUERY FOR FOOTER
 def get_values_footer(language):

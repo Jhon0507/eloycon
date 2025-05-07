@@ -114,9 +114,7 @@ def proyecto(id_proyecto):
     language = g.language
 
     content = get_info_of_project(id_proyecto, language)  # get all the content for the selected project
-
     random_img = random.choice(content['url'])
-
     footer = get_values_footer(language)  # load values footer
     return render_template('proyecto.html',
                            content=content,
@@ -147,9 +145,12 @@ def nosotros():
 @main.route('/servicios')
 def servicios():
     language = g.language
+
+    content = get_all_content_services(language)
     # load values footer
     footer = get_values_footer(language)
     return render_template('servicios.html',
+                           content=content,
                            footer=footer)
 
 @main.route('/contact')
