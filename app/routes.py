@@ -157,7 +157,5 @@ def servicios():
 @main.route('/contacto')
 def contacto():
     language = g.language
-    # load values footer
-    footer = get_values_footer(language)
-    return render_template('contacto.html',
-                           footer=footer)
+    content = get_all_content_contact(language)
+    return render_template('contacto.html', content=content)

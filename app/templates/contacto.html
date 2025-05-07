@@ -6,10 +6,68 @@
 {% block content %}
     {% include "carrusel.html" %}
     <main>
-        <h1>Contacto</h1> 
+
+        <div class="container-contact">
+            <h2>{{ content['contacto_titulo'] }}</h2>
+            <p>{{ content['contacto_description'] }}</p>
+            <div class="container-info-contact">
+                <div>
+                    <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2042652.3989914302!2d31.656039407810546!3d0.6576887128807635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1771a69f6499f945%3A0x874155ce43014549!2sUganda!5e0!3m2!1sca!2ses!4v1746630453219!5m2!1sca!2ses" 
+                    width="100%" 
+                    height="400px" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div>
+                    <form action="">
+                        <div>
+                            <label for="name">{{ content['contacto_name'] }}</label>
+                            <input type="text" name="name" id="name" required>
+                        </div>
+                        <div>
+                            <label for="surnames">{{ content['contacto_apellidos'] }}</label>
+                            <input type="text" name="surnames" id="surnames" required>
+                        </div>
+                        <div>
+                            <label for="email">{{ content['contacto_email'] }}</label>
+                            <input type="text" name="email" id="email" required>
+                        </div>
+                        <div>
+                            <label for="location">{{ content['contacto_localidad'] }}</label>
+                            <input type="text" name="location" id="location" placeholder="Palma de Mallorca" required>
+                        </div>
+                        <div>
+                            <label for="service">{{ content['contacto_tipo_servicio'] }}</label>
+                            <select name="service" id="service">
+                                <option value="0">{{ content['contacto_tipo_servicio_0'] }}</option>
+                                <option value="1">{{ content['contacto_tipo_servicio_1'] }}</option>
+                                <option value="2">{{ content['contacto_tipo_servicio_2'] }}</option>
+                                <option value="3">{{ content['contacto_tipo_servicio_3'] }}</option>
+                                <option value="4">{{ content['contacto_tipo_servicio_4'] }}</option>
+                                <option value="5">{{ content['contacto_tipo_servicio_5'] }}</option>
+                                <option value="6">{{ content['contacto_tipo_servicio_6'] }}</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="idea">{{ content['contacto_idea'] }}</label>
+                            <input type="textarea" name="idea" id="idea" required>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
-    {% include "footer.html" %}
-    {% block scripts %}
-        
-    {% endblock %}
+    <footer>
+        <div class="footer-policies">
+            {{ content['footer2'] }}
+        </div>
+    </footer>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+<script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
 {% endblock %}

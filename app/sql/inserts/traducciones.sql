@@ -339,6 +339,7 @@ garantizando así relaciones de confianza y largo plazo',
 'We base our activities on ethical principles and transparency, maintaining clear, honest, and direct communication with our clients, suppliers, and collaborators, 
 thus ensuring long-term, trusting relationships'); 
 
+-- SERVICES SECTION
 INSERT INTO traducciones(clave, es , en) VALUES
 ('servicio_titulo', 'Qué hacemos', 'What we do'),
 ('servicio_descripcion', 
@@ -375,6 +376,31 @@ INSERT INTO traducciones(clave, es , en) VALUES
 ('servicio_texto_final', 'En EloyCon te ayudamos a hacer realidad el hogar que siempre soñaste', "At EloyCon we help you make the home you've always dreamed of a reality."),
 ('servicio_boton_presupuesto', 'solicitar presupuesto', 'request a quote'),
 ('servicio_boton_ver_proyectos', 'ver proyectos realizados', 'see completed projects');
+
+-- CONTACT SECTION
+INSERT INTO traducciones(clave, es, en) VALUES
+('contacto_titulo', 'Contáctenos', 'Contact us'),
+('contacto_description', 'En EloyCon estaremos encantados de escucharte y ayudarte a dar forma a la casa que siempre has soñado. Puedes contactar con nosotros a través de cualquiera de los siguientes medios:', "At EloyCon, we'd love to hear from you and help you create the home you've always dreamed of. You can contact us through any of the following means:"),
+('contacto_name', 'nombre', 'name'),
+('contacto_apellidos', 'apellidos', 'surnames'),
+('contacto_email', 'email', 'email'),
+('contacto_localidad', 'localidad', 'location'),
+('contacto_tipo_servicio', 'que servicio necesitas', 'what service do you need'),
+('contacto_idea', 'describe tu idea', 'describe your idea'),
+('contacto_nombre_empresa', 'Empresa Constructora EloyCon', 'Construction company EloyCon'),
+('contacto_info_telefono', 'telefono', 'phone'),
+('contacto_info_oficina', ' Oficina Central: Calle Jaime III nº 13, Barcelona, España', 'Headquarters: Calle Jaime III nº 13, Barcelona, ​​Spain'),
+('contacto_info_horario', 'Horario: Lunes a Viernes — 9:00 a 19:00h', 'Hours: Monday to Friday — 9:00 a.m. to 7:00 p.m.'),
+('contacto_btn_enviar', 'Enviar', 'Send');
+
+INSERT INTO traducciones(clave, es, en) VALUES
+('contacto_tipo_servicio_0', 'selecciona una opción', 'select one option'),
+('contacto_tipo_servicio_1', 'construccion entera', 'complete construction'),
+('contacto_tipo_servicio_2', 'construccion interior', 'interior construction'),
+('contacto_tipo_servicio_3', 'construccion exterior', 'exterior construction'),
+('contacto_tipo_servicio_4', 'reforma entera', 'complete reform'),
+('contacto_tipo_servicio_5', 'reforma interior', 'interior reform'),
+('contacto_tipo_servicio_6', 'reforma exterior', 'exterior reform');
 
 -- FOOTER
 INSERT INTO traducciones(clave, es, en) VALUES

@@ -1,0 +1,43 @@
+/*
+START STYLE CONTACT CONTENT
+*/
+main {
+    margin: 4rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container-contact {
+    width: 80%;
+}
+
+.container-contact h2 {
+    margin-left: 4%;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    width: fit-content;
+    border-bottom: 3px solid #d0d0d0;
+}
+
+.container-contact p {
+    width: 90%;
+}
+
+.container-info-contact {
+    display: flex;
+}
+
+.container-info-contact div {
+    width: 50%;
+}
+/*
+END STYLE CONTACT CONTENT
+*/
+.footer-policies {
+    padding: 3px 0;
+    background-color: #404040;
+    font-size: .8rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

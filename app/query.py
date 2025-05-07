@@ -422,6 +422,18 @@ def get_all_content_services(language):
         content['phrases'].append(next(item[language] for item in content_query if item['clave'] == f'servicio_frase_{i}'))
     return content
 
+# QUERY FOR CONTACTO.HTML
+def get_all_content_contact(language):
+    verify_language(language)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "contacto%" OR clave LIKE "footer2"')
+    content_query = cursor.fetchall()
+    print(content_query)
+
+    return {i['clave']:i['texto'] for i in content_query}
+
+# comentario de prueba
 # QUERY FOR FOOTER
 def get_values_footer(language):
     verify_language(language)
