@@ -147,13 +147,10 @@ def nosotros():
 @main.route('/servicios')
 def servicios():
     language = g.language
-
     content = get_all_content_services(language)
     # load values footer
     footer = get_values_footer(language)
-    return render_template('servicios.html',
-                           content=content,
-                           footer=footer)
+    return render_template('servicios.html', content=content, footer=footer)
 
 @main.route('/contact', methods=['POST', 'GET'])
 @main.route('/contacto', methods=['POST', 'GET'])

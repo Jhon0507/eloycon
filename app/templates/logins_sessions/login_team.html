@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../static/img/logoPestaña.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>EloyCon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_team.css') }}">
+</head>
+<body>
+    <div class="background-team">
+        <div class="container-team">
+            <div class="container-team-img"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></div>
+            <div class="container-team-title">{{ data[0] }}</div>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="container-team-form">
+                <form action="{{ url_for('login.login_team') }}" class="form-login" method="post">
+                    <input type="text" name="username" id="username" placeholder="{{ data[1] }}">
+                    <input type="text" name="password" id="password" placeholder="{{ data[2] }}">
+                    <input type="text" name="phone" id="phone" placeholder="{{ data[3] }}:123456789">
+                    <button type="submit">{{ data[4] }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

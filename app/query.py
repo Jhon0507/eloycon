@@ -447,3 +447,14 @@ def get_values_footer(language):
     cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "footer%"')
     content = cursor.fetchall()
     return {i['clave']:i['texto'] for i in content}
+
+# QUERY FOR LOGIN
+def get_user_password_client(username):
+    cursor = con.cursor()
+    cursor.execute('SELECT id, password FROM clientes WHERE usuario = %s', (username,))
+    return cursor.fetchone()
+
+def get_user_password_employee(username):
+    cursor = con.cursor()
+    cursor.execute('SELECT id, telefono, password FROM empleados WHERE usuario = %s', (username,))
+    return cursor.fetchone()

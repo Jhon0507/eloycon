@@ -1,0 +1,99 @@
+html, body {
+    font-family: 'Roboto Mono';
+    margin: 0;
+    padding: 0;
+    background-color: #181a1b;
+    color: #d0d0d0;
+}
+
+.background-team {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/img-login/background_team.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: .5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-team {
+    padding: 2rem 0;
+    max-width: 500px;
+    width: 90%;
+    background-color: rgba(43, 43, 43, .9);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-team-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.container-team-img img{
+    width: 40%;
+}
+
+.container-team-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.container-team-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    font-family: 'Roboto Mono';
+    background-color: transparent;
+    color: #d0d0d0;
+    outline: none;
+    border: 1px solid #d0d0d0;
+    padding: 10px 8px;
+    margin: 5px 0;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+button[type='submit'], a {
+    width: 100%;
+    text-decoration: none;
+    color: #2b2b2b;
+    background-color: #d0d0d0;
+    margin: 5px 0;
+    font-size: 1rem;
+    padding: 10px 0;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button[type='submit']:hover, a:hover {
+    transform: scale(1.02);
+    background-color: aliceblue;
+}
+
+.error {
+    margin-bottom: 10px;
+    text-align: center;
+    color: #FF6666;
+    font-weight: 400;
+}
