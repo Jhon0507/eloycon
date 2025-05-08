@@ -153,9 +153,20 @@ def servicios():
                            content=content,
                            footer=footer)
 
-@main.route('/contact')
-@main.route('/contacto')
+@main.route('/contact', methods=['POST', 'GET'])
+@main.route('/contacto', methods=['POST', 'GET'])
 def contacto():
     language = g.language
     content = get_all_content_contact(language)
-    return render_template('contacto.html', content=content)
+
+    if request.method == 'POST':
+        name = request.form['name']
+        surnames = request.form['surnames']
+        email = request.form['email']
+        location = request.form['location']
+        service = request.form['service']
+        idea = request.form['idea']
+        insert_data_contact(name, surnames, email, location, service, idea)
+        return redirect(url_for('main.home'))
+    else:
+        return render_template('contacto.html', content=content)

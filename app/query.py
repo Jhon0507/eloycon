@@ -429,11 +429,16 @@ def get_all_content_contact(language):
     cursor = con.cursor(dictionary=True)
     cursor.execute(f'SELECT clave, {language} AS texto FROM traducciones WHERE clave LIKE "contacto%" OR clave LIKE "footer2"')
     content_query = cursor.fetchall()
-    print(content_query)
 
     return {i['clave']:i['texto'] for i in content_query}
 
-# comentario de prueba
+def insert_data_contact(name, surnames, email, location, service, idea):
+    cursor = con.cursor()
+    cursor.execute('INSERT INTO peticiones_contacto(nombre, apellidos, email, localidad, servicio, idea) VALUES (%s, %s, %s, %s, %s, %s);',
+                   (name, surnames, email, location, service, idea))
+    con.commit()
+
+
 # QUERY FOR FOOTER
 def get_values_footer(language):
     verify_language(language)

@@ -2,7 +2,7 @@
 START STYLE CONTACT CONTENT
 */
 main {
-    margin: 4rem 0;
+    margin: 4rem 0 2rem 0;
     display: flex;
     justify-content: center;
 }
@@ -25,10 +25,118 @@ main {
 
 .container-info-contact {
     display: flex;
+    margin-top: 2rem;
+}
+
+.dates {
+    text-align: center;
+}
+
+.container-info-contact div:first-child {
+    display: flex;
+    flex-direction: column;
 }
 
 .container-info-contact div {
     width: 50%;
+}
+
+.container-info-contact div:first-child p {
+    margin: 5px 0;
+    font-size: .9rem;
+}
+
+.container-info-contact div:first-child iframe{
+    margin-bottom: 10px;
+}
+
+.form-contact {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+}
+
+.form-contact div {
+    width: 80%;
+}
+
+.form-contact div:hover {
+    color: white;
+    border-color: white;
+}
+
+label {
+    text-transform: capitalize;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, select, textarea {
+    font-family: 'Roboto Mono';
+    margin-bottom: 1rem;
+    width: 100%;
+    background-color: #181a1b;
+    color: #d0d0d0;
+    outline: none;
+    border: 2px solid #d0d0d0;
+    border-radius: 20px;
+    padding: 10px 7px;
+}
+
+select {
+    width: fit-content;
+    appearance: none;
+}
+
+button[type="submit"] {
+    font-family: 'Roboto Mono';
+    font-size: 1rem;
+    float: right;
+    background-color: #d0d0d0;
+    color: #181a1b;
+    padding: 8px 15px;
+    border-radius: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: white;
+}
+
+.social-media-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.social-media-container div {
+    background-color: #404040;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-instagram, .fa-facebook-f, .fa-linkedin-in, .fa-whatsapp {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.container-instagram:hover {
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+.container-facebook:hover {
+    background-color: #1877F2;
+}
+
+.container-linkedin:hover {
+    background-color: #0A66C2;
+}
+
+.container-whatsapp:hover {
+    background-color: #25D366;
 }
 /*
 END STYLE CONTACT CONTENT
@@ -40,4 +148,14 @@ END STYLE CONTACT CONTENT
     display: flex;
     justify-content: center;
     text-align: center;
+}
+
+.container-error {
+    margin-left: 25%;
+}
+
+#error {
+    text-align: center;
+    color: #FF6666;
+    font-weight: 300;
 }

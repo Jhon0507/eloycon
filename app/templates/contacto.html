@@ -6,44 +6,50 @@
 {% block content %}
     {% include "carrusel.html" %}
     <main>
-
         <div class="container-contact">
             <h2>{{ content['contacto_titulo'] }}</h2>
             <p>{{ content['contacto_description'] }}</p>
             <div class="container-info-contact">
                 <div>
                     <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2042652.3989914302!2d31.656039407810546!3d0.6576887128807635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1771a69f6499f945%3A0x874155ce43014549!2sUganda!5e0!3m2!1sca!2ses!4v1746630453219!5m2!1sca!2ses" 
-                    width="100%" 
-                    height="400px" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d914.2460411472623!2d2.6784142521950534!3d39.57888515475607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12979300884a8fa7%3A0xc46ae12131985c36!2sFormaci%C3%B3%20Professional%20Dual%20Sant%20Josep%20Obrer!5e0!3m2!1ses!2ses!4v1746645359345!5m2!1ses!2ses" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
+                    <p class="dates">📞 {{ content['contacto_info_telefono'] }}: +34 632 540 943</p>
+                    <p class="dates">✉️ email: info@eloycon.con</p>
+                    <p class="dates">📍 {{ content['contacto_info_oficina'] }}</p>
+                    <p class="dates">🕒 {{ content['contacto_info_horario'] }}</p>
                 </div>
                 <div>
-                    <form action="">
+                    <div class="container-error">
+                        <p id="error"></p>
+                    </div>
+                    <form action="{{ url_for('main.contacto') }}" method="post" id="form-contact" class="form-contact">
                         <div>
                             <label for="name">{{ content['contacto_name'] }}</label>
-                            <input type="text" name="name" id="name" required>
+                            <input type="text" name="name" id="name">
                         </div>
                         <div>
                             <label for="surnames">{{ content['contacto_apellidos'] }}</label>
-                            <input type="text" name="surnames" id="surnames" required>
+                            <input type="text" name="surnames" id="surnames">
                         </div>
                         <div>
                             <label for="email">{{ content['contacto_email'] }}</label>
-                            <input type="text" name="email" id="email" required>
+                            <input type="text" name="email" id="email">
                         </div>
                         <div>
                             <label for="location">{{ content['contacto_localidad'] }}</label>
-                            <input type="text" name="location" id="location" placeholder="Palma de Mallorca" required>
+                            <input type="text" name="location" id="location" placeholder="Palma de Mallorca">
                         </div>
                         <div>
                             <label for="service">{{ content['contacto_tipo_servicio'] }}</label>
                             <select name="service" id="service">
-                                <option value="0">{{ content['contacto_tipo_servicio_0'] }}</option>
+                                <option value="0">-- {{ content['contacto_tipo_servicio_0'] }} --</option>
                                 <option value="1">{{ content['contacto_tipo_servicio_1'] }}</option>
                                 <option value="2">{{ content['contacto_tipo_servicio_2'] }}</option>
                                 <option value="3">{{ content['contacto_tipo_servicio_3'] }}</option>
@@ -54,10 +60,19 @@
                         </div>
                         <div>
                             <label for="idea">{{ content['contacto_idea'] }}</label>
-                            <input type="textarea" name="idea" id="idea" required>
+                            <textarea name="idea" id="idea" rows="10" cols="10"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit">{{ content['contacto_btn_enviar'] }}</button>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="social-media-container">
+                <div class="container-instagram"><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></div>
+                <div class="container-facebook"><a href="https://www.facebook.com/?locale=ca_ES"><i class="fa-brands fa-facebook-f"></i></a></div>
+                <div class="container-linkedin"><a href="https://es.linkedin.com/"><i class="fa-brands fa-linkedin-in"></i></a></div>
+                <div class="container-whatsapp"><a href="https://www.whatsapp.com/?lang=es"><i class="fa-brands fa-whatsapp"></i></a></div>
             </div>
         </div>
     </main>
@@ -68,6 +83,7 @@
     </footer>
 {% endblock %}
 {% block scripts %}
+<script src="{{ url_for('static', filename='js/verify_form_contact.js') }}"></script>
 <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
 <script src="{{ url_for('static', filename='js/carrusel_phrases.js') }}"></script>
 {% endblock %}

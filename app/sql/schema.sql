@@ -86,3 +86,14 @@ CREATE TABLE proyecto_empleados(
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+
+CREATE TABLE peticiones_contacto(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    apellidos VARCHAR(255),
+    email VARCHAR(255),
+    localidad VARCHAR(255),
+    servicio VARCHAR(255),
+    idea VARCHAR(1500),
+    estado ENUM('pendiente', 'en proceso', 'aceptado', 'en espera', 'rechazada') DEFAULT 'pendiente'
+);

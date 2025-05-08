@@ -175,14 +175,14 @@ START STYLE SECTION BUTTON
     margin-bottom: 10px;
     padding: 10px 5px;
     text-decoration: none;
-    color: black;
+    color: #d0d0d0;
     display: block;
     background-color: #5b5b5b;
     border-radius: 40px;
 }
 
 .container-btns-btn a:hover {
-    color: #d0d0d0;
+    color: white;
     transform: scale(1.1);
 }
 /*
