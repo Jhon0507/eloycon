@@ -27,7 +27,7 @@
                 <li class="nav-section"><a href="{{ url_for('main.nosotros') }}">{{ translate['nav_nosotros'] }}</a></li>
                 <li class="nav-section"><a href="{{ url_for('main.servicios') }}">{{ translate['nav_servicios'] }}</a></li>
                 <li class="nav-section"><a href="{{ url_for('main.contacto') }}">{{ translate['nav_contacto'] }}</a></li>
-                <li class="nav-section"><a href="#">{{ translate['nav_acceso'] }}</a></li>
+                <li class="nav-section"><button onclick="openModal()" >{{ translate['nav_acceso'] }}</button></li>
                 <li class="language">
                     <a href="{{ url_for('main.set_language', lang='es') }}" class="spanish"><span>ES</span><img src="{{ url_for('static', filename='img/icon-language/Spain.svg') }}" alt="Spain flag" width="17px"></a>
                     <a href="{{ url_for('main.set_language', lang='en') }}" class="english"><span>EN</span><img src="{{ url_for('static', filename='img/icon-language/United-Kingdom.svg') }}" alt="United Kingdom flag" width="17px"></a>
@@ -35,8 +35,14 @@
             </ul>
         </div>
     </nav>
-
+    <div class="modal" id="modal" onclick="closeModal(event)">
+        <div class="content-modal">
+            <a href=""><div class="login-client"><p>{{ text_login[0] }}</p></div></a>
+            <a href=""><div class="login-team"><p>{{ text_login[1] }}</p></div></a>
+        </div>
+    </div>
     {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>  

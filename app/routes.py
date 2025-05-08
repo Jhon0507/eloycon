@@ -21,6 +21,7 @@ def get_variables_before_request():
 
     path = os.path.join(current_app.static_folder, 'img', 'carrusel')
     g.img = os.listdir(path)
+    g.text_login = ['Login de cliente', 'Login de equipo'] if language == 'es' else ['Login client', 'Login team']
 
 # inherit global variables for every endpoint
 @main.context_processor
@@ -29,7 +30,8 @@ def inherit_global_variables():
         lang=g.get('language', 'es'),
         translate=g.get('translate', {}),
         phrases_carrusel=g.get('phrases_carrusel', []),
-        img=g.get('img', [])
+        img=g.get('img', []),
+        text_login=g.get('text_login', [])
     )
 
 @main.route('/set_language/<lang>')
