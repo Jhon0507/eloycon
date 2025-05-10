@@ -37,8 +37,8 @@
     </nav>
     <div class="modal" id="modal" onclick="closeModal(event)">
         <div class="content-modal">
-            <a href="{{ url_for('login.login_client') }}"><div class="login-client"><p>{{ text_login[0] }}</p></div></a>
-            <a href="{{ url_for('login.login_team') }}"><div class="login-team"><p>{{ text_login[1] }}</p></div></a>
+            <a href="{{ url_for('login_client.do_login_client') }}"><div class="login-client"><p>{{ text_login[0] }}</p></div></a>
+            <a href="{{ url_for('login_team.do_login_team') }}"><div class="login-team"><p>{{ text_login[1] }}</p></div></a>
         </div>
     </div>
     {% block content %}{% endblock %}

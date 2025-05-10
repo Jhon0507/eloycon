@@ -1,0 +1,37 @@
+{% extends "logins_sessions/session_client.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/view_info_client.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container-view">
+    <h2>{{ view_data_title }}</h2>
+    <div class="data-client">
+        <div class="info_value">
+            <span>{{ view_data[0] }}:</span><span>{{data['nombre']}}</span>
+        </div>
+        <div class="info_value">
+            <span>{{ view_data[1] }}:</span><span>{{data['apellidos']}}</span>
+        </div>
+        <div class="info_value">
+            <span>{{ view_data[2] }}:</span><span>{{data['usuario']}}</span>
+        </div>
+        <div class="info_value">
+            <span>{{ view_data[3] }}:</span><span>{{data['email']}}</span>
+        </div>
+        <div class="info_value">
+            <span>{{ view_data[4] }}:</span><span>{{data['direccion']}}</span>
+        </div>
+        <div class="info_value">
+            <span>{{ view_data[5] }}:</span><span>{{data['telefono']}}</span>
+        </div>
+        <div class="info_value">
+            <span>{{ view_data[6] }}:</span><span>{{data['ciudad']}}</span>
+        </div>
+        <div class="info_value">
+            <span>{{ view_data[7] }}:</span><span>{{data['fecha_registro']}}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

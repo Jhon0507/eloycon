@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../static/img/logoPestaña.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>EloyCon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register_client.css') }}">
+</head>
+<body>
+    <div class="background-client">
+        <div class="container-client">
+            <div class="container-client-img"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></div>
+            <div class="container-client-title">{{ title_register }}</div>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <p id="error"></p>
+            <div class="container-client-form">
+                <form action="{{ url_for('login_client.register_new_client') }}" method="post" id="form-register">
+                    <div class="input-container">
+                        <div>
+                            <label for="name">{{data[0]}}</label>
+                            <input type="text" name="name" id="name">
+                        </div>
+                        <div>
+                            <label for="surnames">{{data[1]}}</label>
+                            <input type="text" name="surnames" id="surnames">
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <div>
+                            <label for="email">{{data[2]}}</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div>
+                            <label for="phone">{{data[4]}}</label>
+                            <input type="tel" name="phone" id="phone" placeholder="+34 123 456 789">
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <div>
+                            <label for="direction">{{data[3]}}</label>
+                            <input type="text" name="direction" id="direction">
+                        </div>
+                        <div>
+                            <label for="province">{{data[5]}}</label>
+                            <input type="text" name="province" id="province">
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <div>
+                            <label for="username">{{data[6]}}</label>
+                            <input type="text" name="username" id="username">
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <div>
+                            <label for="password">{{data[7]}}</label>
+                            <input type="password" name="password" id="password">
+                        </div>
+                        <div>
+                            <label for="repeat-password">{{data[8]}}</label>
+                            <input type="password" name="repeat-password" id="repeat-password">
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <button type="submit">{{send}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/verify_form_register_client.js') }}"></script>
+</body>
+</html>

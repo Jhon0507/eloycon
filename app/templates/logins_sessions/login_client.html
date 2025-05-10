@@ -23,12 +23,12 @@
                 {% endif %}
             {% endwith %}
             <div class="container-client-form">
-                <form action="{{ url_for('login.login_client') }}" class="form-login" method="post">
+                <form action="{{ url_for('login_client.do_login_client') }}" class="form-login" method="post">
                     <input type="text" name="username" id="username" placeholder="{{ data[1] }}">
                     <input type="password" name="password" id="password" placeholder="{{ data[2] }}">
                     <button type="submit">{{ data[3] }}</button>
                 </form>
-                <a href="">{{ data[4] }}</a>
+                <a href="{{ url_for('login_client.register_new_client') }}">{{ data[4] }}</a>
             </div>
         </div>
     </div>

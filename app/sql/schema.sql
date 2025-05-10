@@ -22,9 +22,9 @@ CREATE TABLE proyectos(
     nombre VARCHAR(255),
     ciudad VARCHAR(255),
     fecha_inicio DATETIME NOT NULL,
-    fecha_final_estimada DATETIME NOT NULL,
+    fecha_final_estimada DATETIME,
     fecha_final_real DATETIME,
-    estado ENUM('En revisión', 'En desarrollo', 'Terminado'),
+    estado ENUM('En revision', 'En desarrollo', 'Terminado', 'Cancelado') DEFAULT 'En revision',
     presupuesto DECIMAL(13, 2),
 
     FOREIGN KEY (id_cliente) REFERENCES clientes(id)

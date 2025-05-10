@@ -1,0 +1,74 @@
+{% extends "logins_sessions/session_client.html" %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/update_info_client.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container-update">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h2>{{ update_data_title }}</h2>
+    <p id="error"></p>
+    <form action="{{ url_for('login_client.update_info_client', id_client=data['id']) }}" method="post" class="form-update-client" id="form-update-client">
+        <input type="hidden" name="form_type" value="form_update">
+        <div>
+            <label for="name">{{ update_data[0] }}</label>
+            <input type="text" name="name" id="name" value="{{ data['nombre'] }}">
+        </div>
+        <div>
+            <label for="surnames">{{ update_data[1] }}</label>
+            <input type="text" name="surnames" id="surnames" value="{{ data['apellidos'] }}">
+        </div>
+        <div>
+            <label for="username">{{ update_data[2] }}</label>
+            <input type="text" name="username" id="username" value="{{ data['usuario'] }}">
+        </div>
+        <div>
+            <label for="email">{{ update_data[3] }}</label>
+            <input type="email" name="email" id="email" value="{{ data['email'] }}">
+        </div>
+        <div>
+            <label for="direction">{{ update_data[4] }}</label>
+            <input type="text" name="direction" id="direction" value="{{ data['direccion'] }}">
+        </div>
+        <div>
+            <label for="phone">{{ update_data[5] }}</label>
+            <input type="tel" name="phone" id="phone" value="{{ data['telefono'] }}">
+        </div>
+        <div>
+            <label for="province">{{ update_data[6] }}</label>
+            <input type="text" name="province" id="province" value="{{ data['ciudad'] }}">
+        </div>
+        <div>
+            <button type="submit">{{ send }}</button>
+        </div>
+    </form>
+    <h2>{{ update_data_password_title }}</h2>
+    <p id="error_password_1"></p>
+    <form action="{{ url_for('login_client.update_info_client', id_client=data['id']) }}" method="post" class="form-update-client-password" id="form-update-client-password">
+        <input type="hidden" name="form_type" value="form_update_password">
+        <div>
+            <label for="actual">{{ update_data_password[0] }}</label>
+            <input type="password" name="actual" id="actual">
+        </div>
+        <div>
+            <label for="new">{{ update_data_password[1] }}</label>
+            <input type="password" name="new" id="new">
+        </div>
+        <div>
+            <label for="repeat">{{ update_data_password[2] }}</label>
+            <input type="password" name="repeat" id="repeat">
+        </div>
+        <div>
+            <button type="submit">{{ send }}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/verify_form_update_client.js') }}"></script>
+{% endblock %}

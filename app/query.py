@@ -1,5 +1,5 @@
 from pprint import pprint
-
+from datetime import datetime
 import mysql.connector
 from dotenv import load_dotenv
 import os
@@ -458,3 +458,106 @@ def get_user_password_employee(username):
     cursor = con.cursor()
     cursor.execute('SELECT id, telefono, password FROM empleados WHERE usuario = %s', (username,))
     return cursor.fetchone()
+
+def get_info_client(id_client):
+    cursor = con.cursor(dictionary=True)
+    cursor.execute('SELECT * FROM clientes WHERE id = %s', (id_client,))
+    return cursor.fetchone()
+
+def get_projects_client(id_client, lang):
+    verify_language(lang)
+
+    cursor = con.cursor(dictionary=True)
+    cursor.execute('SELECT p.id, p.nombre, p.nombre, p.ciudad, p.fecha_inicio, p.fecha_final_real, p.estado, p.presupuesto, i.url '
+                   'FROM proyectos p '
+                   'JOIN clientes c '
+                   'ON p.id_cliente = c.id '
+                   'LEFT JOIN imagenes_proyectos i '
+                   'ON i.id_proyecto = p.id '
+                   'WHERE c.id = %s', (id_client,))
+    content_query = cursor.fetchall()
+    for data in content_query:
+        data['fecha_inicio'] = data['fecha_inicio'].strftime('%d-%m-%Y')
+        data['fecha_final_real'] = data['fecha_final_real'].strftime('%d-%m-%Y') if data['fecha_final_real'] else 'No definido' if lang == 'es' else 'Not defined'
+        data['presupuesto'] = "{:,.2f}".format(data['presupuesto']).replace(",", "X").replace(".", ",").replace("X", ".") + " €"
+
+    content = {}
+
+    for data in content_query:
+        key = f'project-{data['id']}'
+
+        if key not in content:
+            content[key] = {
+                'id': data['id'],
+                'nombre': data['nombre'],
+                'ciudad': data['ciudad'],
+                'fecha_inicio': data['fecha_inicio'],
+                'fecha_final': data['fecha_final_real'],
+                'estado': data['estado'],
+                'presupuesto': data['presupuesto'],
+                'urls': [data['url'].replace('app/static/', '')] if data['url'] else []
+            }
+        else:
+            if data['url']:
+                content[key]['urls'].append(data['url'].replace('app/static/', ''))
+
+    if lang == 'en':
+        with open('app/json/name_projects.json', 'r', encoding='utf-8') as filename:
+            titles = json.load(filename)
+        for data in content:
+            # change lang name
+            for name in titles:
+                if content[data]['nombre'] == titles[name]['es']:
+                    content[data]['nombre'] = titles[name]['en']
+
+            # change lang status
+            if content[data]['estado'] == 'En revision':
+                content[data]['estado'] = 'Under review'
+            elif content[data]['estado'] == 'En desarrollo':
+                content[data]['estado'] = 'On development'
+            elif content[data]['estado'] == 'Terminado':
+                content[data]['estado'] = 'Finished'
+            elif content[data]['estado'] == 'Cancelado':
+                content[data]['estado'] = 'Canceled'
+
+    return content
+
+def insert_new_project_client(id_client, name, province, start_date, budget):
+    cursor = con.cursor()
+    cursor.execute('INSERT INTO proyectos(id_cliente, nombre, ciudad, fecha_inicio, presupuesto) VALUES (%s, %s, %s, %s, %s)',
+                   (id_client, name, province, start_date, budget))
+    con.commit()
+
+def update_data_client(id_client, name, surnames, username, email, direction, phone, province):
+    cursor = con.cursor()
+    cursor.execute('UPDATE clientes SET nombre = %s, apellidos = %s, email = %s, direccion = %s, telefono = %s, ciudad = %s, usuario = %s '
+                   'WHERE id = %s', (name, surnames, email, direction, phone, province, username, id_client))
+    con.commit()
+
+def update_password_client(id_client, new_password):
+    cursor = con.cursor()
+    cursor.execute('UPDATE clientes SET password = %s WHERE id = %s', (new_password,id_client))
+    con.commit()
+
+def get_all_username_clients():
+    cursor = con.cursor()
+    cursor.execute('SELECT usuario FROM clientes')
+    content_query = cursor.fetchall()
+    return [username[0] for username in content_query]
+
+def get_all_email_clients():
+    cursor = con.cursor()
+    cursor.execute('SELECT email FROM clientes')
+    content_query = cursor.fetchall()
+    return [email[0] for email in content_query]
+
+def insert_new_client(name, surnames, email, direction, phone, province, username, password):
+    cursor = con.cursor()
+    cursor.execute('INSERT INTO clientes(nombre, apellidos, email, direccion, telefono, ciudad, usuario, password) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+                   (name, surnames, email, direction, phone, province, username, password))
+    con.commit()
+
+def get_id_new_client(username):
+    cursor = con.cursor()
+    cursor.execute('SELECT id FROM clientes WHERE usuario = %s', (username,))
+    return cursor.fetchone()[0]
