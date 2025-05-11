@@ -23,7 +23,7 @@
                 {% endif %}
             {% endwith %}
             <div class="container-team-form">
-                <form action="{{ url_for('login_team.login_team') }}" class="form-login" method="post">
+                <form action="{{ url_for('login_team.do_login_team') }}" class="form-login" method="post">
                     <input type="text" name="username" id="username" placeholder="{{ data[1] }}">
                     <input type="password" name="password" id="password" placeholder="{{ data[2] }}">
                     <input type="tel" name="phone" id="phone" placeholder="{{ data[3] }}: 123456789">

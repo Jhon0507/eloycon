@@ -70,7 +70,7 @@ CREATE Table empleados(
     url_foto VARCHAR(510),
     direccion VARCHAR(255),
     usuario VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(510) NOT NULL UNIQUE 
+    password VARCHAR(510) NOT NULL 
 );
 
 CREATE TABLE proyecto_empleados(

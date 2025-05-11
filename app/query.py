@@ -1,5 +1,4 @@
 from pprint import pprint
-from datetime import datetime
 import mysql.connector
 from dotenv import load_dotenv
 import os
@@ -448,7 +447,7 @@ def get_values_footer(language):
     content = cursor.fetchall()
     return {i['clave']:i['texto'] for i in content}
 
-# QUERY FOR LOGIN
+# QUERIES FOR LOGIN
 def get_user_password_client(username):
     cursor = con.cursor()
     cursor.execute('SELECT id, password FROM clientes WHERE usuario = %s', (username,))
@@ -459,6 +458,7 @@ def get_user_password_employee(username):
     cursor.execute('SELECT id, telefono, password FROM empleados WHERE usuario = %s', (username,))
     return cursor.fetchone()
 
+# QUERIES FOR SESSION CLIENT
 def get_info_client(id_client):
     cursor = con.cursor(dictionary=True)
     cursor.execute('SELECT * FROM clientes WHERE id = %s', (id_client,))
@@ -539,6 +539,7 @@ def update_password_client(id_client, new_password):
     cursor.execute('UPDATE clientes SET password = %s WHERE id = %s', (new_password,id_client))
     con.commit()
 
+# QUERIES FOR REGISTER NEW CLIENT
 def get_all_username_clients():
     cursor = con.cursor()
     cursor.execute('SELECT usuario FROM clientes')
@@ -561,3 +562,72 @@ def get_id_new_client(username):
     cursor = con.cursor()
     cursor.execute('SELECT id FROM clientes WHERE usuario = %s', (username,))
     return cursor.fetchone()[0]
+
+# QUERIES FOR SESSION EMPLOYEE
+def get_info_employee(id_employee):
+    cursor = con.cursor(dictionary=True)
+    cursor.execute('SELECT * FROM empleados WHERE id = %s', (id_employee,))
+    content_query = cursor.fetchone()
+    for key, value in content_query.items():
+        if value is None and key == 'profesion':
+            content_query[key] = 'No definido'
+        if value is None and key == 'departamento':
+            content_query[key] = 'No asignado'
+
+    content_query['url_foto'] = 'img/no_img_employee.png' if content_query['url_foto'] is None \
+        else content_query['url_foto'].replace('app/static/', '')
+
+    return content_query
+
+def get_all_project_employee(id_employee, lang):
+    cursor = con.cursor(dictionary=True)
+    cursor.execute('SELECT p.id, p.nombre, p.ciudad, p.fecha_inicio, p.fecha_final_real, p.estado, p.presupuesto, i.url '
+                   'FROM proyectos p '
+                   'JOIN proyecto_empleados pe ON p.id = pe.id_proyecto '
+                   'LEFT JOIN imagenes_proyectos i ON p.id = i.id_proyecto '
+                   'JOIN empleados e ON e.id = pe.id_empleados '
+                   'WHERE e.id = %s', (id_employee, ))
+    content_query = cursor.fetchall()
+    for data in content_query:
+        data['fecha_inicio'] = data['fecha_inicio'].strftime('%d-%m-%Y')
+        data['fecha_final_real'] = data['fecha_final_real'].strftime('%d-%m-%Y') if data['fecha_final_real'] else 'No definido' if lang == 'es' else 'Not defined'
+        data['presupuesto'] = "{:,.2f}".format(data['presupuesto']).replace(",", "X").replace(".", ",").replace("X", ".") + " €"
+
+    content = {}
+
+    for data in content_query:
+        key = f'project-{data['id']}'
+        if key not in content:
+            content[key] = {
+                'id': data['id'],
+                'nombre': data['nombre'],
+                'ciudad': data['ciudad'],
+                'fecha_inicio': data['fecha_inicio'],
+                'fecha_final': data['fecha_final_real'],
+                'estado': data['estado'],
+                'presupuesto': data['presupuesto'],
+                'urls': [data['url'].replace('app/static/', '')] if data['url'] else []
+            }
+        else:
+            if data['url']:
+                content[key]['urls'].append(data['url'].replace('app/static/', ''))
+
+    if lang == 'en':
+        with open('app/json/name_projects.json', 'r', encoding='utf-8') as filename:
+            titles = json.load(filename)
+        for data in content:
+            # change lang name
+            for name in titles:
+                if content[data]['nombre'] == titles[name]['es']:
+                    content[data]['nombre'] = titles[name]['en']
+
+            # change lang status
+            if content[data]['estado'] == 'En revision':
+                content[data]['estado'] = 'Under review'
+            elif content[data]['estado'] == 'En desarrollo':
+                content[data]['estado'] = 'On development'
+            elif content[data]['estado'] == 'Terminado':
+                content[data]['estado'] = 'Finished'
+            elif content[data]['estado'] == 'Cancelado':
+                content[data]['estado'] = 'Canceled'
+    return content

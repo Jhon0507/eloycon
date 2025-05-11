@@ -1,4 +1,3 @@
-import os
 import random
 from flask import render_template, Blueprint, request, g, session, redirect, url_for, current_app
 from .query import *

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../static/img/logoPestaña.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/57ce1ec34c.js" crossorigin="anonymous"></script>
+    <title>EloyCon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/session_employee.css') }}">
+    {% block style %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <div class="container-username">
+            <div><img src="{{url_for('static', filename=data['url_foto'])}}" alt="perfil"></div>
+            <div>{{ data['usuario'] }}</div>
+        </div>
+        <div class="container-logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" width="100%"></div>
+        <div class="container-options">
+            <div class="icon-settings">
+                <a href=""><i class="fa-solid fa-gear"></i></a>
+                <ul class="options-submenu">
+                    <li><a href="">Actualizar datos</a></li>
+                    <li><a href="">Ver datos</a></li>
+                    <li><a href="{{ url_for('main.home') }}">Cerrar sesion</a></li>
+                </ul>
+            </div>
+            <div>
+                <a href="{{ url_for('main.set_language', lang='es') }}" class="spanish"><span>ES</span><img src="{{ url_for('static', filename='img/icon-language/Spain.svg') }}" alt="Spain flag" width="17px"></a>
+                <a href="{{ url_for('main.set_language', lang='en') }}" class="english"><span>EN</span><img src="{{ url_for('static', filename='img/icon-language/United-Kingdom.svg') }}" alt="United Kingdom flag" width="17px"></a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="content-employee">
+            <div class="name-employee">
+                <h2>{{ data['nombre'] }} {{ data['apellidos'] }}</h2>
+            </div>
+            {% block content %}{% endblock %}
+            <div class="historial-container">
+                <h3>{{ title }}</h3>
+                <div class="historial">
+                    {% if historial %}
+                    <div class="projects-container">
+                        {% for data in historial %}
+                        <div class="project-container">
+                            <div class="name-project">
+                                <div>{{ historial[data]['nombre'] }}</div>
+                                <div><i class="fa-solid fa-angle-up toggle-info"></i></div>
+                            </div>
+                            <div class="info-project">
+                                <p>{{ data_project[0] }}: {{ historial[data]['estado'] }}</p>
+                                <p>{{ data_project[1] }}: {{ historial[data]['ciudad'] }}</p>
+                                <p>{{ data_project[2] }}: {{ historial[data]['fecha_inicio'] }}</p>
+                                <p>{{ data_project[3] }}: {{ historial[data]['fecha_final'] }}</p>
+                                <p>{{ data_project[4] }}: {{ historial[data]['presupuesto'] }}</p>
+                                {% if historial[data]['urls'] %}
+                                <div class="show-imgs-project">
+                                    {% for url in historial[data]['urls'] %}
+                                    <div>
+                                        <img src="{{ url_for('static', filename=url) }}" alt="img-project">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <div class="no-imgs-project">{{ no_img_project }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div>
+                        <p>{{no_project}}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/show_info_project.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

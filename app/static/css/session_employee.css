@@ -1,0 +1,241 @@
+html, body {
+    font-family: 'Roboto Mono';
+    margin: 0;
+    padding: 0;
+    background-color: #181a1b;
+}
+
+/*
+START STYLE NAV SECTION
+*/
+nav {
+    padding: 0;
+    margin: 10px auto;
+    width: 800px;
+    max-width: 90%;
+    background-color: #b1b1b1;
+    color: #181a1b;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 100px;
+}
+
+.container-username {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container-username div img {
+    width: 45%;
+    border-radius: 50%;
+}
+
+.container-logo {
+    width: 200px;
+}
+
+.container-options {
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.icon-settings {
+    position: relative;
+    display: inline-block;
+}
+
+.fa-gear {
+    color: #181a1b;
+    font-size: 1.5rem;
+    transition: transform 1s ease;
+}
+
+.options-submenu {
+    display: none;
+    position: absolute;
+    background-color: #d0d0d0;
+    list-style: none;
+    padding: 10px;
+    margin: 2px 0 0 0;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 170px;
+    border-radius: 10px;
+}
+
+.options-submenu li {
+    margin: 5px 0;
+}
+
+.options-submenu li a {
+    text-decoration: none;
+    color: #181a1b;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.options-submenu li a:hover {
+    background-color: white;
+}
+
+.icon-settings:hover .options-submenu {
+    display: block;
+}
+
+.icon-settings:hover .fa-gear {
+    transform: rotate(90deg) scale(1.2);
+    color: #2b2b2b;
+}
+
+.spanish, .english {
+    text-decoration: none;
+    color: #181a1b;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.spanish:hover, .english:hover {
+    background-color: #d0d0d0;
+    color: #2b2b2b;
+}
+
+.spanish img, .english img {
+    margin-left: 2px;
+}
+/*
+END STYLE NAV SECTION
+*/
+/*
+START STYLE CONTENT
+*/
+.content-employee {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.name-employee {
+    color: #d0d0d0;
+    font-size: 1.5rem;
+    
+}
+
+.name-employee h2 {
+    margin-top: 0;
+}
+
+.historial-container {
+    background-color: #2b2b2b;
+    color: #d0d0d0;
+    width: 800px;
+    max-width: 90%;
+    border-radius: 10px;
+}
+
+.historial {
+    padding: 15px;
+}
+
+.projects-container {
+    height: fit-content;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.project-container {
+    margin: 10px 5px;
+    padding: 5px 15px;
+    background-color: #3b3b3b;
+    border-radius: 8px;
+    font-size: .9rem;
+}
+
+.name-project {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.name-project div:first-child {
+    text-align: left;
+}
+
+.name-project div:last-child {
+    margin-left: 10px;
+}
+
+.toggle-info.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.info-project {
+    display: none;
+    border-top: 2px solid #d0d0d0;
+}
+
+.info-project p {
+    text-align: left;
+    margin: 8px 0;
+}
+
+.show-imgs-project {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.show-imgs-project div img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.no-imgs-project {
+    padding: 15px;
+    text-align: center;
+}
+
+/*
+END STYLE CONTENT
+*/
+/*scroll style*/
+/* Para t0do el scroll */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fondo del scroll */
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 6px;
+}
+
+/* "Barra" que se mueve */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+}
+
+/* Al pasar el mouse por encima */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
